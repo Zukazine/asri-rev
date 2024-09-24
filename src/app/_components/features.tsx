@@ -1,67 +1,73 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const FeaturesComponent = () => {
+// Define the types for the chapters
+interface Chapter {
+  center: [number, number];
+  zoom: number;
+  pitch: number;
+  bearing: number;
+}
+
+interface FeaturesComponentProps {
+  map: any; // Type can be improved if you have a specific type for your map
+}
+
+const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
   const featureElement = useRef<HTMLDivElement>(null);
+  const [activeChapter, setActiveChapter] = useState<string>("BWS"); // Default active chapter
+
+  const chapters: Record<string, Chapter> = {
+    BWS: {
+      center: [122.998946037506, 0.6322912120126575],
+      zoom: 15.5,
+      pitch: 20,
+      bearing: 27,
+    },
+    alopohu_1: {
+      center: [122.9235867, 0.5965877],
+      zoom: 15,
+      pitch: 0,
+      bearing: 150,
+    },
+    alopohu_2: {
+      center: [122.9260419, 0.6033611],
+      zoom: 13,
+      pitch: 40,
+      bearing: 90,
+    },
+    lomaya_1: {
+      center: [123.0829197, 0.6023056],
+      zoom: 12.3,
+      pitch: 12,
+      bearing: 90,
+    },
+    lomaya_2: {
+      center: [123.0696141, 0.6054167],
+      zoom: 15.3,
+      pitch: 20,
+      bearing: 45,
+    },
+    ekstensifikasi: {
+      center: [123.1141975, 0.5389722],
+      zoom: 12.3,
+      pitch: 20,
+      bearing: 180,
+    },
+  };
 
   useEffect(() => {
-    const chapters = {
-      baker: {
-        bearing: 27,
-        center: [-0.15591514, 51.51830379],
-        zoom: 15.5,
-        pitch: 20,
-      },
-      aldgate: {
-        duration: 6000,
-        center: [-0.07571203, 51.51424049],
-        bearing: 150,
-        zoom: 15,
-        pitch: 0,
-      },
-      "london-bridge": {
-        bearing: 90,
-        center: [-0.08533793, 51.50438536],
-        zoom: 13,
-        pitch: 40,
-      },
-      woolwich: { bearing: 90, center: [0.05991101, 51.48752939], zoom: 12.3 },
-      gloucester: {
-        bearing: 45,
-        center: [-0.18335806, 51.49439521],
-        zoom: 15.3,
-        pitch: 20,
-        speed: 0.5,
-      },
-      "caulfield-gardens": {
-        bearing: 180,
-        center: [-0.19684993, 51.5033856],
-        zoom: 12.3,
-        pitch: 20,
-        speed: 0.5,
-      },
-    };
-
-    let activeChapterName = "baker"; // Start with 'baker'
-
-    const setActiveChapter = (chapterName: string) => {
-      if (chapterName === activeChapterName) return;
-      // Fly to the map location associated with the new chapter (implement this)
-      document.getElementById(chapterName)?.classList.add("active");
-      document.getElementById(activeChapterName)?.classList.remove("active");
-      activeChapterName = chapterName;
-    };
-
     const handleScroll = () => {
       const scrollPosition = featureElement.current!.scrollTop;
       const sectionHeight = featureElement.current!.clientHeight;
 
-      // Determine which chapter is active based on scroll position
       for (const chapter of Object.keys(chapters)) {
         const section = document.getElementById(chapter);
-        const sectionTop = section!.offsetTop;
-        const sectionBottom = sectionTop + section!.clientHeight;
+        if (!section) continue; // Skip if section doesn't exist
+
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.clientHeight;
 
         if (
           scrollPosition + sectionHeight / 2 >= sectionTop &&
@@ -75,12 +81,24 @@ const FeaturesComponent = () => {
 
     featureElement.current?.addEventListener("scroll", handleScroll);
 
-    // Activate 'baker' on load
-    setActiveChapter("baker");
     return () => {
       featureElement.current?.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    // Fly to the active chapter's location on change
+    if (map) {
+      const chapter = chapters[activeChapter];
+      map.flyTo({
+        center: chapter.center,
+        zoom: chapter.zoom,
+        pitch: chapter.pitch,
+        bearing: chapter.bearing,
+        essential: true, // Ensures a smooth transition
+      });
+    }
+  }, [activeChapter, map]); // Run this effect when the active chapter changes
 
   return (
     <div
@@ -93,70 +111,93 @@ const FeaturesComponent = () => {
         backgroundColor: "#fafafa",
       }}
     >
-      <section id="baker" className="active">
-        <h3>221b Baker St.</h3>
+      <section id="BWS" className={activeChapter === "BWS" ? "active" : ""}>
+        <h3>Balai Wilayah Sungai Sulawesi II Gorontalo</h3>
         <p>
-          November 1895. London is shrouded in fog and Sherlock Holmes and
-          Watson pass time restlessly awaiting a new case. "The London criminal
-          is certainly a dull fellow," Sherlock bemoans. "There have been
-          numerous petty thefts," Watson offers in response. Just then a
-          telegram arrives from Sherlock's brother Mycroft with a mysterious
-          case.
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
+          adipisci veritatis cumque? Doloremque consectetur ut aliquid dolor
+          blanditiis quos, iste soluta suscipit animi beatae nam praesentium.
+          Similique, nostrum at. Natus!
         </p>
       </section>
-      <section id="aldgate">
-        <h3>Aldgate Station</h3>
+      <section
+        id="alopohu_1"
+        className={activeChapter === "alopohu_1" ? "active" : ""}
+      >
+        <h3>Titik Pertama - D.I. Alopohu</h3>
         <p>
-          Arthur Cadogan West was found dead, head crushed in on train tracks at
-          Aldgate Station at 6AM Tuesday morning. West worked at Woolwich
-          Arsenal on the Bruce-Partington submarine, a secret military project.
-          Plans for the submarine had been stolen and seven of the ten missing
-          papers were found in West's possession. Mycroft implores Sherlock to
-          take the case and recover the three missing papers.
+          Tinjauan titik pertama terletak pada D.I. Alopohu dengan koordinat
+          0°37'11.8"N 122°56'29.1"E. Berdasarkan hasil pemodelan, piksel pada
+          koordinat tersebut menunjukkan bahwa wilayah ini tergolong dalam
+          kategori sangat kurang optimal. Survei lapangan menunjukkan bahwa
+          kategori evaluasi infrastruktur irigasi di wilayah ini sesuai dengan
+          hasil pemodelan yakni sangat kurang optimal. Tidak adanya saluran
+          pembuang serta kondisi topografi wilayah ini menyebabkan terjadinya
+          banjir pada musim hujan, yang merusak tanaman padi. Selain itu, pada
+          musim kemarau, wilayah ini kekurangan air hingga mencapai dua minggu.
         </p>
       </section>
-      <section id="london-bridge">
-        <h3>London Bridge</h3>
+      <section
+        id="alopohu_2"
+        className={activeChapter === "alopohu_2" ? "active" : ""}
+      >
+        <h3>Titik Kedua - D.I. Alopohu</h3>
         <p>
-          Holmes and Watson's investigations take them across London. Sherlock
-          deduces that West was murdered elsewhere, then moved to Aldgate
-          Station to create the illusion that he was crushed on the tracks by a
-          train. On their way to Woolwich Sherlock dispatches a telegram to
-          Mycroft at London Bridge: "Send list of all foreign spies known to be
-          in England, with full address."
+          Tinjauan titik kedua terletak pada D.I. Alopohu pada koordinat
+          0°36'12.10"N 122°55'43.04"E yang merupakan usulan tambahan dari Unit
+          Pengelola Daerah Irigasi Alopohu. Berdasarkan hasil pemodelan, piksel
+          pada area tersebut tergolong sangat kurang optimal. Survei lapangan
+          menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah
+          ini sesuai dengan hasil pemodelan analisis spasial. Masalah yang
+          ditemukan adalah faktor kekeringan ketika tidak pada musim hujan.
         </p>
       </section>
-      <section id="woolwich">
-        <h3>Woolwich Arsenal</h3>
+      <section
+        id="lomaya_1"
+        className={activeChapter === "lomaya_1" ? "active" : ""}
+      >
+        <h3>Titik Ketiga - D.I. Lomaya</h3>
         <p>
-          While investigating at Woolwich Arsenal Sherlock learns that West did
-          not have the three keys—door, office, and safe—necessary to steal the
-          papers. The train station clerk mentions seeing an agitated West
-          boarding the 8:15 train to London Bridge. Sherlock suspects West of
-          following someone who had access to the Woolwich chief's keyring with
-          all three keys.
+          Tinjauan titik ketiga merupakan area D.I. berikutnya yakni D.I. Lomaya
+          yang terletak pada koordinat 0°36'08.3"N 123°05'07.8"E sebagai titik
+          tambahan dari usulan pihak BBWS II Sulawesi. Berdasarkan hasil
+          pemodelan, piksel pada area tersebut tergolong cukup optimal. Survei
+          lapangan menunjukkan bahwa kategori evaluasi infrastruktur irigasi di
+          wilayah tersebut sesuai dengan hasil pemodelan. Hal ini ditunjukkan
+          pada area sawah tersebut memiliki produktivitas panen yang baik.
         </p>
       </section>
-      <section id="gloucester">
-        <h3>Gloucester Road</h3>
+      <section
+        id="lomaya_2"
+        className={activeChapter === "lomaya_2" ? "active" : ""}
+      >
+        <h3>Titik Keempat - D.I. Lomaya</h3>
         <p>
-          Mycroft responds to Sherlock's telegram and mentions several spies.
-          Hugo Oberstein of 13 Caulfield Gardens catches Sherlock's eye. He
-          heads to the nearby Gloucester Road station to investigate and learns
-          that the windows of Caulfield Gardens open over rail tracks where
-          trains stop frequently.
+          Tinjauan titik keempat yang berlokasi di D.I. Lomaya tepatnya pada
+          koordinat 0°36'19.5"N 123°04'19.9"E. Berdasarkan hasil pemodelan,
+          piksel pada area tersebut tergolong sudah optimal. Survei lapangan
+          menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah
+          tersebut sesuai dengan hasil pemodelan.
         </p>
       </section>
-      <section id="caulfield-gardens">
-        <h3>13 Caulfield Gardens</h3>
+      <section
+        id="ekstensifikasi"
+        className={activeChapter === "ekstensifikasi" ? "active" : ""}
+      >
+        <h3>Titik Terakhir - Ekstensifikasi</h3>
         <p>
-          Holmes deduces that the murderer placed West atop a stopped train at
-          Caulfield Gardens. The train traveled to Aldgate Station before West's
-          body finally toppled off. Backtracking to the criminal's apartment,
-          Holmes finds a series of classified ads from
-          <em>The Daily Telegraph</em> stashed away. All are under the name
-          Pierrot: "Monday night after nine. Two taps. Only ourselves. Do not be
-          so suspicious. Payment in hard cash when goods delivered."
+          Tinjauan titik terakhir sebagai validasi model dalam isu
+          ekstensifikasi irigasi berlokasi di luar area D.I. Lomaya yakni di
+          titik 0°32'20.3"N 123°07'00.4"E. Berdasarkan hasil pemodelan, piksel
+          pada area tersebut menunjukkan kawasan yang memiliki rekomendasi yang
+          prioritas untuk dilakukan ekstensifikasi. Survei lapangan menunjukkan
+          kawasan tersebut merupakan area perkebunan yang memiliki akses saluran
+          air yang cukup dan tanah yang subur sehingga menunjukkan bahwa
+          kategori ekstensifikasi di wilayah tersebut sesuai dengan hasil
+          pemodelan. Akan tetapi, perlu dikaji lebih lanjut ketika akan membahas
+          ekstensifikasi atau penambahan area petak sawah baru karena perlu
+          dipertimbangkan faktor lain seperti izin pembebasan lahan, jumlah SDM
+          seperti petani, saluran air sekunder, dan pupuk.
         </p>
       </section>
     </div>
