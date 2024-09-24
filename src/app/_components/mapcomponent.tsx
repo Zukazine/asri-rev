@@ -5,7 +5,9 @@ import { useEffect } from "react";
 const MapComponent = () => {
   useEffect(() => {
     const maptilersdk = (window as any).maptilersdk; // Access the global variable
-    maptilersdk.config.apiKey = "hlmEZlsnczlfgiCzqlbA"; // Set your API key
+    const Maptiler_TOKEN = process.env.VITE_MAPTILER_ACCESS_TOKEN;
+
+    maptilersdk.config.apiKey = Maptiler_TOKEN; // Set your API key
     const map = new maptilersdk.Map({
       container: "map",
       style: maptilersdk.MapStyle.STREETS,
