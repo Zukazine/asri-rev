@@ -21,25 +21,25 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
   const chapters: Record<string, Chapter> = {
     BWS: {
       center: [122.998946037506, 0.6322912120126575],
-      zoom: 15.5,
+      zoom: 18,
       pitch: 20,
       bearing: 27,
     },
     alopohu_1: {
       center: [122.9235867, 0.5965877],
-      zoom: 15,
+      zoom: 16,
       pitch: 0,
       bearing: 150,
     },
     alopohu_2: {
       center: [122.9260419, 0.6033611],
-      zoom: 13,
+      zoom: 16,
       pitch: 40,
       bearing: 90,
     },
     lomaya_1: {
       center: [123.0829197, 0.6023056],
-      zoom: 12.3,
+      zoom: 16.3,
       pitch: 12,
       bearing: 90,
     },
@@ -51,7 +51,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
     },
     ekstensifikasi: {
       center: [123.1141975, 0.5389722],
-      zoom: 12.3,
+      zoom: 15,
       pitch: 20,
       bearing: 180,
     },

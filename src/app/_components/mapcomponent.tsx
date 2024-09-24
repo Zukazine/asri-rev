@@ -3,25 +3,25 @@
 import { useEffect } from "react";
 
 interface MapComponentProps {
-  onMapInit: (map: any) => void; // Callback to pass the map instance
+  onMapInit: (map: any) => void;
 }
 
 const MapComponent = ({ onMapInit }: MapComponentProps) => {
   useEffect(() => {
-    const maptilersdk = (window as any).maptilersdk;
-    const Maptiler_TOKEN = process.env.NEXT_PUBLIC_MAPTILER_ACCESS_TOKEN;
+    const mapboxgl = (window as any).mapboxgl;
+    const Mapbox_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
-    maptilersdk.config.apiKey = Maptiler_TOKEN;
-    const map = new maptilersdk.Map({
+    mapboxgl.accessToken = Mapbox_TOKEN;
+
+    const map = new mapboxgl.Map({
       container: "map",
-      style: maptilersdk.MapStyle.STREETS,
+      style: "mapbox://styles/mapbox/satellite-v9",
       center: [122.998946037506, 0.6322912120126575],
-      zoom: 15.5,
+      zoom: 18,
       bearing: 27,
       pitch: 45,
     });
 
-    // Pass the map instance to the parent component
     onMapInit(map);
 
     return () => {
