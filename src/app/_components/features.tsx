@@ -63,6 +63,51 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
     },
   };
 
+  // Fetch the local GeoJSON file from the public/data directory
+  useEffect(() => {
+    if (map) {
+      map.on("load", () => {
+        // Load the Gorontalo GeoJSON file from the public directory
+        fetch("/data/Gorontalo.geojson")
+          .then((response) => response.json())
+          .then((geojson) => {
+            // Add the GeoJSON source to the map
+            map.addSource("gorontalo", {
+              type: "geojson",
+              data: geojson,
+            });
+
+            // Add the fill layer with a transparent color
+            map.addLayer({
+              id: "gorontalo-polygon",
+              type: "fill",
+              source: "gorontalo",
+              layout: {},
+              paint: {
+                "fill-color": "#ffffff", // Transparent fill color
+                "fill-opacity": 0.1, // Slight transparency for the polygon
+              },
+            });
+
+            // Add the outline with a white line
+            map.addLayer({
+              id: "gorontalo-outline",
+              type: "line",
+              source: "gorontalo",
+              layout: {},
+              paint: {
+                "line-color": "#ffffff", // White outline
+                "line-width": 2, // Outline width
+              },
+            });
+          })
+          .catch((error) => {
+            console.error("Error loading GeoJSON:", error);
+          });
+      });
+    }
+  }, [map]);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!featureElement.current) return;
@@ -145,31 +190,47 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
         </h3>
 
         <h4>Latar Belakang</h4>
-        <p>
-          Gorontalo diarahkan menjadi salah satu sentra pertanian yang mendukung
-          pasokan pangan dalam lingkup regional Pulau Sulawesi maupun KTI (RPIW
-          Prov. Gorontalo 2025 – 2034). Memiliki tren panen padi yang berbanding
-          terbalik antara produktivitas dan luas panen (BPS 2023). Adanya
-          indikasi kendala berupa belum terpadunya infrastruktur pertanian
-          menyebabkan produktivitas lahan tidak optimal (RPIW Prov. Gorontalo
-          2025 – 2034).
-        </p>
+        <ul>
+          <li>
+            Gorontalo diarahkan menjadi salah satu sentra pertanian untuk
+            mendukung pasokan pangan di regional Pulau Sulawesi dan KTI (RPIW
+            Prov. Gorontalo 2025 – 2034).
+          </li>
+          <li>
+            Terdapat tren panen padi yang berbanding terbalik antara
+            produktivitas dan luas panen (BPS 2023).
+          </li>
+          <li>
+            Ada indikasi kendala berupa ketidakselarasan infrastruktur pertanian
+            yang menyebabkan produktivitas lahan tidak optimal (RPIW Prov.
+            Gorontalo 2025 – 2034).
+          </li>
+        </ul>
 
         <h4>Tujuan</h4>
-        <p>
-          - Validasi identifikasi kesesuaian hasil analisis spasial dengan
-          kondisi lapangan. - Evaluasi parameter yang digunakan dalam analisis
-          spasial. - Identifikasi permasalahan di daerah irigasi yang belum
-          optimal.
-        </p>
+        <ul>
+          <li>
+            Validasi identifikasi kesesuaian hasil analisis spasial dengan
+            kondisi lapangan.
+          </li>
+          <li>Evaluasi parameter yang digunakan dalam analisis spasial.</li>
+          <li>
+            Identifikasi permasalahan di daerah irigasi yang belum optimal.
+          </li>
+        </ul>
 
         <h4>Manfaat Hasil Studi</h4>
-        <p>
-          - Mendukung dalam integrasi irigasi primer (pusat) dan irigasi tersier
-          (daerah) untuk meningkatkan produktivitas lahan pertanian. - Mendukung
-          pengembangan hilirisasi tanaman pangan Gorontalo sehingga memberikan
-          nilai tambah terhadap komoditas unggulan dari hasil pemodelan spasial.
-        </p>
+        <ul>
+          <li>
+            Mendukung integrasi irigasi primer (pusat) dan irigasi tersier
+            (daerah) untuk meningkatkan produktivitas lahan pertanian.
+          </li>
+          <li>
+            Mendukung pengembangan hilirisasi tanaman pangan Gorontalo,
+            memberikan nilai tambah terhadap komoditas unggulan dari hasil
+            pemodelan spasial.
+          </li>
+        </ul>
       </section>
 
       <section id="bws" className={activeChapter === "bws" ? "active" : ""}>
@@ -178,10 +239,11 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
         <p>
           Balai Wilayah Sungai Sulawesi II Gorontalo merupakan lembaga yang
           berperan dalam pengelolaan sumber daya air dan infrastruktur irigasi
-          di wilayah Gorontalo. Baru-baru ini, telah diadakan pemaparan dan
-          diskusi terkait dengan pemodelan spasial yang dihadiri oleh Kepala BWS
+          di wilayah Gorontalo. Pada Juli 2024, diadakan pemaparan dan diskusi
+          terkait dengan pemodelan spasial yang dihadiri oleh Kepala BWS
           Sulawesi II Gorontalo, Kepala Seksi Pelaksanaan BWS Sulawesi II
-          Gorontalo, dan Staf Pusat Pengembangan Infrastruktur Wilayah Nasional.
+          Gorontalo, dan Staf Pusat Pengembangan Infrastruktur Wilayah Nasional
+          BPIW.
         </p>
 
         <h4>Rangkuman Diskusi</h4>
