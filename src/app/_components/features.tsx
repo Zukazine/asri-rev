@@ -16,14 +16,20 @@ interface FeaturesComponentProps {
 
 const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
   const featureElement = useRef<HTMLDivElement>(null);
-  const [activeChapter, setActiveChapter] = useState<string>("BWS"); // Default active chapter
+  const [activeChapter, setActiveChapter] = useState<string>("header"); // Default active chapter
 
   const chapters: Record<string, Chapter> = {
-    BWS: {
+    header: {
       center: [122.998946037506, 0.6322912120126575],
-      zoom: 18,
-      pitch: 20,
-      bearing: 27,
+      zoom: 9,
+      pitch: 10,
+      bearing: 5,
+    },
+    bws: {
+      center: [122.998946037506, 0.6322912120126575],
+      zoom: 15,
+      pitch: 10,
+      bearing: 5,
     },
     alopohu_1: {
       center: [122.9235867, 0.5965877],
@@ -59,32 +65,50 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (!featureElement.current) return;
+
       const scrollPosition = featureElement.current!.scrollTop;
       const sectionHeight = featureElement.current!.clientHeight;
 
+      let foundChapter = "header"; // Start with the first chapter by default.
+
       for (const chapter of Object.keys(chapters)) {
         const section = document.getElementById(chapter);
-        if (!section) continue; // Skip if section doesn't exist
+        if (!section) continue;
 
         const sectionTop = section.offsetTop;
         const sectionBottom = sectionTop + section.clientHeight;
 
+        // If the middle of the scroll position is within the section, activate this chapter
         if (
           scrollPosition + sectionHeight / 2 >= sectionTop &&
           scrollPosition + sectionHeight / 2 < sectionBottom
         ) {
-          setActiveChapter(chapter);
-          return;
+          foundChapter = chapter;
+          break;
         }
+      }
+
+      // Ensure that scrolling back to the very top triggers the 'header' chapter
+      if (scrollPosition === 0) {
+        foundChapter = "header";
+      }
+
+      // Update active chapter if it has changed
+      if (activeChapter !== foundChapter) {
+        setActiveChapter(foundChapter);
       }
     };
 
-    featureElement.current?.addEventListener("scroll", handleScroll);
+    // Attach the scroll event listener
+    const currentElement = featureElement.current;
+    currentElement?.addEventListener("scroll", handleScroll);
 
+    // Cleanup the event listener
     return () => {
       featureElement.current?.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [activeChapter]);
 
   useEffect(() => {
     // Fly to the active chapter's location on change
@@ -98,7 +122,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
         essential: true, // Ensures a smooth transition
       });
     }
-  }, [activeChapter, map]); // Run this effect when the active chapter changes
+  }, [activeChapter, map]);
 
   return (
     <div
@@ -111,15 +135,91 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
         backgroundColor: "#fafafa",
       }}
     >
-      <section id="BWS" className={activeChapter === "BWS" ? "active" : ""}>
-        <h3>Balai Wilayah Sungai Sulawesi II Gorontalo</h3>
+      <section
+        id="header"
+        className={activeChapter === "header" ? "active" : ""}
+      >
+        <h3>
+          Studi Validasi Hasil Pemodelan Spasial Infrastruktur Irigasi Permukaan
+          di Gorontalo 2024
+        </h3>
+
+        <h4>Latar Belakang</h4>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
-          adipisci veritatis cumque? Doloremque consectetur ut aliquid dolor
-          blanditiis quos, iste soluta suscipit animi beatae nam praesentium.
-          Similique, nostrum at. Natus!
+          Gorontalo diarahkan menjadi salah satu sentra pertanian yang mendukung
+          pasokan pangan dalam lingkup regional Pulau Sulawesi maupun KTI (RPIW
+          Prov. Gorontalo 2025 – 2034). Memiliki tren panen padi yang berbanding
+          terbalik antara produktivitas dan luas panen (BPS 2023). Adanya
+          indikasi kendala berupa belum terpadunya infrastruktur pertanian
+          menyebabkan produktivitas lahan tidak optimal (RPIW Prov. Gorontalo
+          2025 – 2034).
+        </p>
+
+        <h4>Tujuan</h4>
+        <p>
+          - Validasi identifikasi kesesuaian hasil analisis spasial dengan
+          kondisi lapangan. - Evaluasi parameter yang digunakan dalam analisis
+          spasial. - Identifikasi permasalahan di daerah irigasi yang belum
+          optimal.
+        </p>
+
+        <h4>Manfaat Hasil Studi</h4>
+        <p>
+          - Mendukung dalam integrasi irigasi primer (pusat) dan irigasi tersier
+          (daerah) untuk meningkatkan produktivitas lahan pertanian. - Mendukung
+          pengembangan hilirisasi tanaman pangan Gorontalo sehingga memberikan
+          nilai tambah terhadap komoditas unggulan dari hasil pemodelan spasial.
         </p>
       </section>
+
+      <section id="bws" className={activeChapter === "bws" ? "active" : ""}>
+        <h3>Balai Wilayah Sungai Sulawesi II Gorontalo</h3>
+
+        <p>
+          Balai Wilayah Sungai Sulawesi II Gorontalo merupakan lembaga yang
+          berperan dalam pengelolaan sumber daya air dan infrastruktur irigasi
+          di wilayah Gorontalo. Baru-baru ini, telah diadakan pemaparan dan
+          diskusi terkait dengan pemodelan spasial yang dihadiri oleh Kepala BWS
+          Sulawesi II Gorontalo, Kepala Seksi Pelaksanaan BWS Sulawesi II
+          Gorontalo, dan Staf Pusat Pengembangan Infrastruktur Wilayah Nasional.
+        </p>
+
+        <h4>Rangkuman Diskusi</h4>
+        <ul>
+          <li>
+            Pemodelan spasial dapat digunakan untuk pengambilan keputusan.
+          </li>
+          <li>
+            Resolusi piksel yang lebih baik meningkatkan akurasi pemodelan.
+          </li>
+          <li>
+            Evaluasi infrastruktur irigasi sebaiknya menggunakan Indeks Kinerja
+            Sistem Irigasi (IKSI) yang terdiri dari 8 parameter penilaian.
+          </li>
+          <li>
+            Data menunjukkan peningkatan luas lahan panen, tetapi penurunan
+            produktivitas.
+          </li>
+          <li>
+            Penyebab penurunan produktivitas tidak hanya faktor irigasi, tetapi
+            juga pupuk dan tenaga kerja.
+          </li>
+          <li>Pihak BWS hanya dapat memenuhi kebutuhan air.</li>
+          <li>
+            Infrastruktur yang belum optimal perlu dilakukan rehabilitasi dan
+            perbaikan.
+          </li>
+          <li>
+            Kesulitan dalam pemodelan terkait sensitivitas; perubahan parameter
+            dapat membuat model menjadi tidak optimal.
+          </li>
+          <li>
+            Model yang baik dapat digunakan di seluruh Indonesia dan perlu
+            diperbaiki seiring perkembangan teknologi.
+          </li>
+        </ul>
+      </section>
+
       <section
         id="alopohu_1"
         className={activeChapter === "alopohu_1" ? "active" : ""}

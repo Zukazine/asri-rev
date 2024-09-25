@@ -17,7 +17,7 @@ const MapComponent = ({ onMapInit }: MapComponentProps) => {
       container: "map",
       style: "mapbox://styles/mapbox/satellite-v9",
       center: [122.998946037506, 0.6322912120126575],
-      zoom: 18,
+      zoom: 9,
       bearing: 27,
       pitch: 45,
     });
