@@ -1,5 +1,6 @@
 "use client";
 
+import mapboxgl from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 
 // Define the types for the chapters
@@ -20,26 +21,26 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
 
   const chapters: Record<string, Chapter> = {
     header: {
-      center: [122.998946037506, 0.6322912120126575],
+      center: [122.773004, 0.669374],
       zoom: 9,
       pitch: 10,
       bearing: 5,
     },
     bws: {
-      center: [122.998946037506, 0.6322912120126575],
-      zoom: 15,
+      center: [122.98569986875489, 0.6296795796776695],
+      zoom: 17,
       pitch: 10,
       bearing: 5,
     },
     alopohu_1: {
       center: [122.9235867, 0.5965877],
-      zoom: 16,
-      pitch: 0,
+      zoom: 16.5,
+      pitch: 5,
       bearing: 150,
     },
     alopohu_2: {
       center: [122.9260419, 0.6033611],
-      zoom: 16,
+      zoom: 16.5,
       pitch: 40,
       bearing: 90,
     },
@@ -63,7 +64,6 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
     },
   };
 
-  // Fetch the local GeoJSON file from the public/data directory
   useEffect(() => {
     if (map) {
       map.on("load", () => {
@@ -74,7 +74,78 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
             // Add the GeoJSON source to the map
             map.addSource("gorontalo", {
               type: "geojson",
-              data: geojson,
+              data: {
+                ...geojson,
+                features: [
+                  ...geojson.features,
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [122.98569986875489, 0.6296795796776695],
+                    },
+                    properties: {
+                      id: "BWS Location",
+                      description: "Balai Wilayah Sungai Sulawesi II Gorontalo",
+                    },
+                  },
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [122.9235867, 0.5965877],
+                    },
+                    properties: {
+                      id: "Alopohu 1",
+                      description: "D.I. Alopohu - First Point",
+                    },
+                  },
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [122.9260419, 0.6033611],
+                    },
+                    properties: {
+                      id: "Alopohu 2",
+                      description: "D.I. Alopohu - Second Point",
+                    },
+                  },
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [123.0829197, 0.6023056],
+                    },
+                    properties: {
+                      id: "Lomaya 1",
+                      description: "D.I. Lomaya - First Point",
+                    },
+                  },
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [123.0696141, 0.6054167],
+                    },
+                    properties: {
+                      id: "Lomaya 2",
+                      description: "D.I. Lomaya - Second Point",
+                    },
+                  },
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [123.1141975, 0.5389722],
+                    },
+                    properties: {
+                      id: "Ekstensifikasi",
+                      description: "Ekstensifikasi Area",
+                    },
+                  },
+                ],
+              },
             });
 
             // Add the fill layer with a transparent color
@@ -84,8 +155,8 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
               source: "gorontalo",
               layout: {},
               paint: {
-                "fill-color": "#ffffff", // Transparent fill color
-                "fill-opacity": 0.1, // Slight transparency for the polygon
+                "fill-color": "#ffffff",
+                "fill-opacity": 0.1,
               },
             });
 
@@ -96,9 +167,21 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
               source: "gorontalo",
               layout: {},
               paint: {
-                "line-color": "#ffffff", // White outline
-                "line-width": 2, // Outline width
+                "line-color": "#ffffff",
+                "line-width": 2,
               },
+            });
+
+            // Add layer for points
+            map.addLayer({
+              id: "gorontalo-points",
+              type: "circle",
+              source: "gorontalo",
+              paint: {
+                "circle-radius": 6,
+                "circle-color": "#B42222",
+              },
+              filter: ["==", "$type", "Point"],
             });
           })
           .catch((error) => {

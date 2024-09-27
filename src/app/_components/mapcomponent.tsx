@@ -16,7 +16,7 @@ const MapComponent = ({ onMapInit }: MapComponentProps) => {
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/satellite-v9",
-      center: [122.998946037506, 0.6322912120126575],
+      center: [122.773004, 0.669374],
       zoom: 9,
       bearing: 27,
       pitch: 45,
