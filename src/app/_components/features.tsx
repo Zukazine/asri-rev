@@ -64,6 +64,33 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
     },
   };
 
+  const pointsData: { coordinates: [number, number]; title: string }[] = [
+    {
+      coordinates: [122.98569986875489, 0.6296795796776695],
+      title: "BWS Location - Balai Wilayah Sungai Sulawesi II Gorontalo",
+    },
+    {
+      coordinates: [122.9235867, 0.5965877],
+      title: "Alopohu 1 - D.I. Alopohu - First Point",
+    },
+    {
+      coordinates: [122.9260419, 0.6033611],
+      title: "Alopohu 2 - D.I. Alopohu - Second Point",
+    },
+    {
+      coordinates: [123.0829197, 0.6023056],
+      title: "Lomaya 1 - D.I. Lomaya - First Point",
+    },
+    {
+      coordinates: [123.0696141, 0.6054167],
+      title: "Lomaya 2 - D.I. Lomaya - Second Point",
+    },
+    {
+      coordinates: [123.1141975, 0.5389722],
+      title: "Ekstensifikasi - Ekstensifikasi Area",
+    },
+  ];
+
   useEffect(() => {
     if (map) {
       map.on("load", () => {
@@ -71,6 +98,19 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
         fetch("/data/Gorontalo.geojson")
           .then((response) => response.json())
           .then((geojson) => {
+            // Create features from pointsData
+            const pointFeatures = pointsData.map(({ coordinates, title }) => ({
+              type: "Feature",
+              geometry: {
+                type: "Point",
+                coordinates,
+              },
+              properties: {
+                id: title.split(" - ")[0], // Extract ID from the title
+                description: title.split(" - ")[1], // Extract description from the title
+              },
+            }));
+
             // Add the GeoJSON source to the map
             map.addSource("gorontalo", {
               type: "geojson",
@@ -78,72 +118,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
                 ...geojson,
                 features: [
                   ...geojson.features,
-                  {
-                    type: "Feature",
-                    geometry: {
-                      type: "Point",
-                      coordinates: [122.98569986875489, 0.6296795796776695],
-                    },
-                    properties: {
-                      id: "BWS Location",
-                      description: "Balai Wilayah Sungai Sulawesi II Gorontalo",
-                    },
-                  },
-                  {
-                    type: "Feature",
-                    geometry: {
-                      type: "Point",
-                      coordinates: [122.9235867, 0.5965877],
-                    },
-                    properties: {
-                      id: "Alopohu 1",
-                      description: "D.I. Alopohu - First Point",
-                    },
-                  },
-                  {
-                    type: "Feature",
-                    geometry: {
-                      type: "Point",
-                      coordinates: [122.9260419, 0.6033611],
-                    },
-                    properties: {
-                      id: "Alopohu 2",
-                      description: "D.I. Alopohu - Second Point",
-                    },
-                  },
-                  {
-                    type: "Feature",
-                    geometry: {
-                      type: "Point",
-                      coordinates: [123.0829197, 0.6023056],
-                    },
-                    properties: {
-                      id: "Lomaya 1",
-                      description: "D.I. Lomaya - First Point",
-                    },
-                  },
-                  {
-                    type: "Feature",
-                    geometry: {
-                      type: "Point",
-                      coordinates: [123.0696141, 0.6054167],
-                    },
-                    properties: {
-                      id: "Lomaya 2",
-                      description: "D.I. Lomaya - Second Point",
-                    },
-                  },
-                  {
-                    type: "Feature",
-                    geometry: {
-                      type: "Point",
-                      coordinates: [123.1141975, 0.5389722],
-                    },
-                    properties: {
-                      id: "Ekstensifikasi",
-                      description: "Ekstensifikasi Area",
-                    },
-                  },
+                  ...pointFeatures, // Include dynamically created features
                 ],
               },
             });
@@ -172,17 +147,14 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
               },
             });
 
-            // Add layer for points
-            map.addLayer({
-              id: "gorontalo-points",
-              type: "circle",
-              source: "gorontalo",
-              paint: {
-                "circle-radius": 6,
-                "circle-color": "#B42222",
-              },
-              filter: ["==", "$type", "Point"],
-            });
+            // Load custom marker image
+            map.loadImage(
+              "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
+              (error: any, image: any) => {
+                if (error) throw error;
+                map.addImage("custom-marker", image);
+              }
+            );
           })
           .catch((error) => {
             console.error("Error loading GeoJSON:", error);
@@ -190,6 +162,38 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       });
     }
   }, [map]);
+
+  useEffect(() => {
+    // When the active chapter changes, manage the visibility of the points layer
+    if (map) {
+      if (activeChapter !== "header") {
+        // Add the points layer if not in the header chapter
+        if (!map.getLayer("gorontalo-points")) {
+          map.addLayer({
+            id: "gorontalo-points",
+            type: "symbol",
+            source: "gorontalo",
+            layout: {
+              "icon-image": "custom-marker",
+              "icon-size": 1, // Adjust size as needed
+              "text-field": ["get", "id"], // Display the 'id' property as label
+              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+              "text-offset": [0, 1.25],
+              "text-anchor": "top",
+              "icon-allow-overlap": true,
+              "text-allow-overlap": true,
+            },
+            filter: ["==", "$type", "Point"],
+          });
+        }
+      } else {
+        // Remove the points layer when in the header chapter
+        if (map.getLayer("gorontalo-points")) {
+          map.removeLayer("gorontalo-points");
+        }
+      }
+    }
+  }, [activeChapter, map]);
 
   useEffect(() => {
     const handleScroll = () => {
