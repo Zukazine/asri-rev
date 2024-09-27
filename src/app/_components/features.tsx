@@ -45,13 +45,13 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       bearing: 90,
     },
     lomaya_1: {
-      center: [123.0829197, 0.6023056],
+      center: [123.0855, 0.602306],
       zoom: 16.3,
       pitch: 12,
       bearing: 90,
     },
     lomaya_2: {
-      center: [123.0696141, 0.6054167],
+      center: [123.072194, 0.605417],
       zoom: 15.3,
       pitch: 20,
       bearing: 45,
@@ -78,11 +78,11 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       title: "Alopohu 2 - D.I. Alopohu - Second Point",
     },
     {
-      coordinates: [123.0829197, 0.6023056],
+      coordinates: [123.0855, 0.602306],
       title: "Lomaya 1 - D.I. Lomaya - First Point",
     },
     {
-      coordinates: [123.0696141, 0.6054167],
+      coordinates: [123.072194, 0.605417],
       title: "Lomaya 2 - D.I. Lomaya - Second Point",
     },
     {
@@ -155,6 +155,48 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
                 map.addImage("custom-marker", image);
               }
             );
+
+            // Fetch the irrigation areas GeoJSON
+            fetch("/data/diGorontalo.geojson")
+              .then((response) => response.json())
+              .then((irrigationGeojson) => {
+                // Add the irrigation areas source
+                map.addSource("irrigation-areas", {
+                  type: "geojson",
+                  data: irrigationGeojson,
+                });
+
+                // Define styles for each nm_inf value
+                const styles = {
+                  "D.I. Paguyaman": { color: "#ff0000", opacity: 0.5 },
+                  "D.I. Lomaya Alale Pilohayanga": {
+                    color: "#00ff00",
+                    opacity: 0.5,
+                  },
+                  "D.I. Alopohu": { color: "#0000ff", opacity: 0.5 },
+                };
+
+                // Add a layer for each nm_inf with the corresponding style
+                for (const [nm_inf, style] of Object.entries(styles)) {
+                  map.addLayer({
+                    id: `irrigation-${nm_inf
+                      .replace(/\s+/g, "-")
+                      .toLowerCase()}`,
+                    type: "line",
+                    source: "irrigation-areas",
+                    layout: {},
+                    paint: {
+                      "line-color": style.color,
+                      "line-width": 2,
+                      "line-opacity": style.opacity,
+                    },
+                    filter: ["==", ["get", "nm_inf"], nm_inf], // Filter by nm_inf property
+                  });
+                }
+              })
+              .catch((error) => {
+                console.error("Error loading irrigation GeoJSON:", error);
+              });
           })
           .catch((error) => {
             console.error("Error loading GeoJSON:", error);
