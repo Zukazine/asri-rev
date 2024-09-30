@@ -3,14 +3,19 @@
 import { useState } from "react";
 import FeaturesComponent from "./_components/features";
 import MapComponent from "./_components/mapcomponent";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   const [map, setMap] = useState<any>(null);
 
   return (
-    <div style={{ display: "flex", margin: 0, padding: 0 }}>
-      <MapComponent onMapInit={setMap} />
-      {map && <FeaturesComponent map={map} />}{" "}
-    </div>
+    <>
+      <Link href={`/geoplatform/`}>
+        <Button>
+          Story Lookup
+        </Button>
+      </Link>
+    </>
   ); 
 }
