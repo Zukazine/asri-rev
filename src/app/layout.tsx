@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google"
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,12 +18,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script
-          src="https://cdn.maptiler.com/maptiler-sdk-js/v2.2.2/maptiler-sdk.umd.js"
+          src="https://cdn.maptiler.coms/maptiler-sdk-js/v2.2.2/maptiler-sdk.umd.js"
           defer
-        ></script>
+        />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className} antialiased`}
       >
         {children}
       </body>
