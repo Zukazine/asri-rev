@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc"
-import { FaGithub } from "react-icons/fa"
 import { useState } from "react";
 
 interface SignInProps {
@@ -23,6 +22,15 @@ export const SignIn = ({
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [pending, setPending] = useState(false)
+
+  const handleProviderSignIn = () =>{
+    setPending(true)
+    signIn("google").finally(() => {
+      setPending(false)
+    })
+  }
 
   return (
     <Card className="w-full h-full p-10 bg-white/45 backdrop-blur-xl rounded-2xl">
@@ -33,7 +41,7 @@ export const SignIn = ({
           </CardTitle>
           <img src="/image/bubble.gif" className="size-[100px] scale-x-[-1] absolute -right-[7%]"/>
         </div>
-        <CardDescription className="text-muted/90">
+        <CardDescription className="text-muted">
           Use your email or another service to continue
         </CardDescription>
       </CardHeader>
@@ -64,8 +72,8 @@ export const SignIn = ({
               variant={"outline"} 
               size={"lg"} 
               className="relative"
-              disabled={false}
-              onClick={() => {}}
+              disabled={pending}
+              onClick={handleProviderSignIn}
             >
               <FcGoogle className="absolute size-5 top-3 left-2.5"/>
               Continue with Google
