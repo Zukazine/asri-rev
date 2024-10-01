@@ -1,7 +1,7 @@
 "use client"
 
-import FeaturesComponent from "@/app/_components/features";
-import MapComponent from "@/app/_components/mapcomponent";
+import FeaturesComponent from "@/components/features";
+import MapComponent from "@/components/mapcomponent";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
@@ -12,7 +12,7 @@ const StoryByIdPage = () => {
   return ( 
   <div className="relative">
     <Link href={"/"} className="absolute z-[13212]">
-      <Button>
+      <Button variant={"default"} size={"default"}>
         Homepage
       </Button>
     </Link>
