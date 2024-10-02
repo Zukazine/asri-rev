@@ -18,15 +18,22 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Link href={`/geoplatform/`}>
-        <Button variant={"default"} size={"default"}>
-          Story Lookup
+    <div className="flex flex-col h-full w-full items-center justify-center gap-y-6">
+      <p className="text-3xl font-bold text-center">UNDER DEVELOPMENT <br/>BY <span className="text-teal-500">DA BOYS</span></p>
+      <img
+        src="/image/success.gif"
+        className="size-[320px]"
+      />
+      <div className="flex gap-x-4">
+        <Link href={`/geoplatform/`}>
+          <Button variant={"ghost"} size={"default"} className="border-2 border-teal-400">
+            Story Lookup
+          </Button>
+        </Link>
+        <Button variant={"destructive"} size={"default"} onClick={handleSignOut}>
+          Log out
         </Button>
-      </Link>
-      <Button variant={"destructive"} size={"default"} onClick={handleSignOut}>
-        Log out
-      </Button>
-    </>
+      </div>
+    </div>
   ); 
 }
