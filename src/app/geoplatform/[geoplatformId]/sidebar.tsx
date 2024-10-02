@@ -1,3 +1,5 @@
+"use client"
+
 import { Bell, Home, MessageSquare, MoreHorizontal } from "lucide-react"
 import { SidebarButton } from "./sidebar-button"
 import { usePathname } from "next/navigation"

@@ -1,16 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useRouter } from "next/navigation";
 import { Construction, Rocket } from "lucide-react";
+import { useGetGeoplatforms } from "@/features/geoplatforms/api/use-get-geoplatforms";
 
 export default function Home() {
   const router = useRouter()
   const [map, setMap] = useState<any>(null);
   const { signOut } = useAuthActions()
+
+  const { data: Geoplatforms, isLoading: isGeoplatformsLoading } = useGetGeoplatforms()
+  
+  const geoplatformId = useMemo(() => Geoplatforms?.[0]?._id, [Geoplatforms])
+
+  const handleToGeoplatform = () => {
+    if (isGeoplatformsLoading) return
+
+    if (geoplatformId) {
+      router.replace(`/geoplatform/${geoplatformId}`)
+    }
+  }
 
   const handleSignOut = async () => {
     await signOut().finally(() => {
@@ -26,11 +39,14 @@ export default function Home() {
         className="size-[320px]"
       />
       <div className="flex gap-x-4">
-        <Link href={`/geoplatform/`}>
-          <Button variant={"ghost"} size={"default"} className="border-2 border-teal-400">
+          <Button 
+            variant={"ghost"} 
+            size={"default"} 
+            className="border-2 border-teal-400"
+            onClick={handleToGeoplatform}
+          >
             To Construction Site <Construction className="size-4 ml-2"/>
           </Button>
-        </Link>
         <Button variant={"destructive"} size={"default"} onClick={handleSignOut}>
           Log out
         </Button>

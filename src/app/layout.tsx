@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import "./globals.css";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server"
+import { Toaster } from "@/components/ui/sonner";
 
 
 const inter = Inter({subsets: ['latin']})
@@ -29,6 +30,7 @@ export default function RootLayout({
         </head>
         <body className={`${inter.className} antialiased`}>
           <ConvexClientProvider>
+            <Toaster />
             {children}
           </ConvexClientProvider>
         </body>

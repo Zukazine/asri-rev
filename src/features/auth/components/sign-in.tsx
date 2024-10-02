@@ -10,6 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc"
 import { useState } from "react";
 import { TriangleAlert } from "lucide-react";
+import { useCreateGeoplatform } from "@/features/geoplatforms/api/use-create-geoplatform";
+import { toast } from "sonner";
 
 interface SignInProps {
   setState: (state: SignInFlow) => void
@@ -26,16 +28,27 @@ export const SignIn = ({
   const [error, setError] = useState("")
   const [pending, setPending] = useState(false)
 
+  const { mutate, isPending } = useCreateGeoplatform()
+
+  const handleCreateDefaultGeoplatform = async () => {
+    mutate({
+      name: "default"
+    }, { onSuccess(id) {
+      router.push(`geoplatform/${id}`)
+    },})
+  }
+  
   const onPasswordSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    setPending(true)
+    setPending(isPending)
     signIn("password", { email, password, flow: "signIn"})
       .catch(() => {
         setError("Invalid email or password!")
       })
       .finally(() => {
-        setPending(false)
+        handleCreateDefaultGeoplatform()
+        setPending(isPending)
         router.push("/")
       })
   }

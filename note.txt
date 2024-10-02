@@ -1,18 +1,4 @@
-authentication : 
-- auth handler
-- user button
-- {workspaces}
--- {prov}
---- {unor}
----- {project-name}
------ {detailed-project}
------ {storytelling}
---- ck
---- prmhn
---- bm
-- ov
--- workspaces
-** add geo file
-** add raster file
-** tombol buat create
--- workspaces 
+geoplatfrom database : 
+- create an api to create default overlay and geoplatforms
+- create an api to get the overlayId and geoplatformId
+

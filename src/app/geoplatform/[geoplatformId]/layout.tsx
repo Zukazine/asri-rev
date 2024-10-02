@@ -1,5 +1,3 @@
-"use client"
-
 import { SideBar } from "./sidebar"
 
 interface GeoplatformLayoutProps {
@@ -11,10 +9,12 @@ const GeoplatformLayout = ({
 }: GeoplatformLayoutProps) => {
   return(
     <div className="h-full">
-      <div className="flex h-[calc(100vh-40px)]">
+      <div className="flex h-[calc(100vh-2.5%)]">
         <SideBar />
         {children}
       </div>
     </div>
   )  
 }
+
+export default GeoplatformLayout;
