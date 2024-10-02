@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc"
 import { useState } from "react";
+import { TriangleAlert } from "lucide-react";
 
 interface SignInProps {
   setState: (state: SignInFlow) => void
@@ -24,6 +25,20 @@ export const SignIn = ({
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [pending, setPending] = useState(false)
+
+  const onPasswordSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    setPending(true)
+    signIn("password", { email, password, flow: "signIn"})
+      .catch(() => {
+        setError("Invalid email or password!")
+      })
+      .finally(() => {
+        setPending(false)
+        router.push("/")
+      })
+  }
 
   const handleProviderSignIn = () =>{
     setPending(true)
@@ -45,24 +60,30 @@ export const SignIn = ({
           Use your email or another service to continue
         </CardDescription>
       </CardHeader>
+      {!!error && (
+        <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-3">
+          <TriangleAlert className="size-4"/>
+          <p>{error}</p>
+        </div>
+      )}
       <CardContent className="space-y-6 px-0 pb-0">
-        <form className="space-y-2.5" onSubmit={() => {}}>  
+        <form className="space-y-2.5" onSubmit={onPasswordSignIn}>  
           <Input 
-            disabled={false}
+            disabled={pending}
             value={email}
             onChange={(e) => {setEmail(e.target.value)}}
             placeholder="Email"
             required
           />
           <Input 
-            disabled={false}
+            disabled={pending}
             value={password}
             onChange={(e) => {setPassword(e.target.value)}}
             placeholder="Password"
             required
             type="password"
           />
-          <Button className="w-full" type="submit" size={"lg"} disabled={false} variant={"default"}>
+          <Button className="w-full" type="submit" size={"lg"} disabled={pending} variant={"default"}>
             Continue
           </Button>
         </form>
