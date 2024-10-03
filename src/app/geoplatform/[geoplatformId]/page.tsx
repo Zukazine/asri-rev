@@ -1,6 +1,8 @@
 "use client"
 
+import { Button } from "@/components/ui/button";
 import { TriangleAlert } from "lucide-react";
+import Link from "next/link";
 
 const GeoplatformIdPage = () => {
   return (
@@ -9,6 +11,11 @@ const GeoplatformIdPage = () => {
       <span className="text-sm text-muted-foreground">
         No Channel Found
       </span>
+      <Link href={"@/story/1"}>
+        <Button >
+          To storypage
+        </Button>
+      </Link>
     </div>
   )
 }

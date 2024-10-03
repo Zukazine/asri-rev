@@ -20,12 +20,12 @@ export const create = mutation({
     const userId = await auth.getUserId(ctx)
 
     if (!userId) {
-      return;
+      throw new Error('Unauthorized');
     }
 
     const joinCode = generateCode()
 
-    const geoplatformId = ctx.db.insert("geoplatforms", {
+    const geoplatformId = await ctx.db.insert("geoplatforms", {
       name: args.name,
       userId,
       joinCode
@@ -58,9 +58,13 @@ export const get = query({
 
 export const getById = query({
   args: {
-    geoplatformId: v.id("geoplatforms")
+    id: v.id("geoplatforms")
   }, 
   handler: async (ctx, args) => {
-    
+    const userId = await auth.getUserId(ctx)
+
+    if (!userId) throw new Error("Unauthorized!");
+
+    return await ctx.db.get(args.id)
   },
 })

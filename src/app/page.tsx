@@ -7,20 +7,29 @@ import { useAuthActions } from "@convex-dev/auth/react";
 import { useRouter } from "next/navigation";
 import { Construction, Rocket } from "lucide-react";
 import { useGetGeoplatforms } from "@/features/geoplatforms/api/use-get-geoplatforms";
+import { useCreateGeoplatform } from "@/features/geoplatforms/api/use-create-geoplatform";
 
 export default function Home() {
   const router = useRouter()
   const [map, setMap] = useState<any>(null);
   const { signOut } = useAuthActions()
 
-  const { data: Geoplatforms, isLoading: isGeoplatformsLoading } = useGetGeoplatforms()
+  const { mutate: createGeoplatform } = useCreateGeoplatform()
+  const { data: geoplatforms, isLoading: isGeoplatformsLoading } = useGetGeoplatforms()
   
-  const geoplatformId = useMemo(() => Geoplatforms?.[0]?._id, [Geoplatforms])
+  const geoplatformId = useMemo(() => geoplatforms?.[0]?._id, [geoplatforms])
+  const isGeoExist = useMemo(() => geoplatforms?.length !== 0, [geoplatforms])
 
   const handleToGeoplatform = () => {
     if (isGeoplatformsLoading) return
 
-    if (geoplatformId) {
+    if (!isGeoExist) {
+      createGeoplatform({
+        name: "default"
+      }, { onSuccess(id) {
+        router.push(`geoplatform/${id}`)
+      },})
+    } else {
       router.replace(`/geoplatform/${geoplatformId}`)
     }
   }

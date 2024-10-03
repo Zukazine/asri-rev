@@ -1,8 +1,11 @@
 "use client"
 
-import { Bell, Home, MessageSquare, MoreHorizontal } from "lucide-react"
+import { MoreHorizontal } from "lucide-react"
 import { SidebarButton } from "./sidebar-button"
 import { usePathname } from "next/navigation"
+import { LuLayers } from "react-icons/lu"
+import { SiMaterialformkdocs } from "react-icons/si"
+import { FaEarthAsia} from "react-icons/fa6"
 
 export const SideBar = () => {
   const pathname = usePathname()
@@ -16,9 +19,9 @@ export const SideBar = () => {
         backgroundSize: "cover"
       }}
     >
-      <SidebarButton icon={Home} label={"Gio"} isActive={pathname.includes("/geoplatform")} />
-      <SidebarButton icon={MessageSquare} label={"Ovy"} />
-      <SidebarButton icon={Bell} label={"Formy"} />
+      <SidebarButton icon={FaEarthAsia} label={"Gio"} isActive={pathname.includes("/geoplatform")} />
+      <SidebarButton icon={LuLayers} label={"Ovy"} />
+      <SidebarButton icon={SiMaterialformkdocs} label={"Formy"} />
       <SidebarButton icon={MoreHorizontal} label={"More"} />
     </aside>
   )

@@ -8,10 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc"
-import { useState } from "react";
+import React, { ButtonHTMLAttributes, useMemo, useState } from "react";
 import { TriangleAlert } from "lucide-react";
 import { useCreateGeoplatform } from "@/features/geoplatforms/api/use-create-geoplatform";
 import { toast } from "sonner";
+import { useGetGeoplatforms } from "@/features/geoplatforms/api/use-get-geoplatforms";
 
 interface SignInProps {
   setState: (state: SignInFlow) => void
@@ -27,36 +28,27 @@ export const SignIn = ({
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [pending, setPending] = useState(false)
-
-  const { mutate, isPending } = useCreateGeoplatform()
-
-  const handleCreateDefaultGeoplatform = async () => {
-    mutate({
-      name: "default"
-    }, { onSuccess(id) {
-      router.push(`geoplatform/${id}`)
-    },})
-  }
   
   const onPasswordSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    setPending(isPending)
+    setPending(true)
     signIn("password", { email, password, flow: "signIn"})
       .catch(() => {
         setError("Invalid email or password!")
       })
       .finally(() => {
-        handleCreateDefaultGeoplatform()
-        setPending(isPending)
-        router.push("/")
+        setPending(false)
+        router.push('/')
       })
   }
 
   const handleProviderSignIn = () =>{
     setPending(true)
-    signIn("google").finally(() => {
-      setPending(false)
+    signIn("google")
+      .finally(() => {
+        setPending(false)
+        router.push('/')
     })
   }
 

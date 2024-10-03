@@ -1,4 +1,5 @@
-geoplatfrom database : 
-- create an api to create default overlay and geoplatforms
-- create an api to get the overlayId and geoplatformId
-
+problem : 
+- jangan buat default kalau udah ada done
+- tambahin di sign up dan googlnya done
+- explanatory, story, document page
+- yang geoplatform dulu geiz

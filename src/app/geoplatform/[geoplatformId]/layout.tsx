@@ -17,4 +17,5 @@ const GeoplatformLayout = ({
   )  
 }
 
+
 export default GeoplatformLayout;

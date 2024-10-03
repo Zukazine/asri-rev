@@ -52,6 +52,7 @@ export const SignUp = ({
     setPending(true)
     signIn("google").finally(() => {
       setPending(false)
+      router.push("/")
     })
   }
 
