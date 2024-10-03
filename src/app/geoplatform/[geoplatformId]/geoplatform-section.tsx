@@ -4,19 +4,19 @@ import { Plus } from "lucide-react"
 import { FaCaretDown } from "react-icons/fa"
 import { useToggle } from "react-use"
 import { cn } from "@/lib/utils"
-interface WorkspaceSectionProps {
+interface GeoplatformSectionProps {
   children: React.ReactNode
   label: string
   hint: string
   onNew?: () => void
 }
 
-export const WorkspaceSection = ({
+export const GeoplatformSection = ({
   children,
   label,
   hint,
   onNew
-}: WorkspaceSectionProps) => {
+}: GeoplatformSectionProps) => {
   const [on, toggle] = useToggle(true)
   
   return(
