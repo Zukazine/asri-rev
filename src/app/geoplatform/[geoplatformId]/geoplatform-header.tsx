@@ -26,7 +26,7 @@ export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderPro
     <>
       {/* <InviteModal open={inviteOpen} setOpen={setInviteOpen} name={workspace.name} joinCode={workspace.joinCode}/> */}
       {/* <PreferencesModal open={preferencesOpen} setOpen={setPreferencesOpen} initialValue={workspace.name}/> */}
-      <div className="flex items-center justify-between px-4 h-[49px] gap-0.5">
+      <div className="flex items-center justify-between px-4 h-[49px] gap-0.5 z-10">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="transparent" className="font-semibold text-lg w-auto p-1.5 overflow-hidden" size="sm">
@@ -67,7 +67,7 @@ export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderPro
           </DropdownMenuContent>
         </DropdownMenu>
         <div className="flex items-center gap-0.5">
-          <Hint label="Filter conversations" side="bottom">
+          <Hint label="Filter workspaces" side="bottom">
             <Button variant="transparent" size="iconSm">
               <ListFilter className="size-4"/>
             </Button>

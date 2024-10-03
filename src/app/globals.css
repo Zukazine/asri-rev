@@ -8,27 +8,6 @@ body,
 :root {
   height: 100%;
 }
-/* 
-body {  
-  margin: 0;
-  padding: 0;
-  display: flex;
-} */
-
-#map {
-  position: fixed;
-  width: 50%;
-  height: 100vh;
-}
-
-#features {
-  width: 50%;
-  margin-left: 50%;
-  font-family: sans-serif;
-  overflow-y: auto;
-  background-color: #fafafa;
-  height: 100vh;
-}
 
 section {
   padding: 25px 50px;

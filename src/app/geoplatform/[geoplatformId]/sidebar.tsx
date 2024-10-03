@@ -12,11 +12,12 @@ export const SideBar = () => {
 
   return (
     <aside 
-      className="w-[70px] h-full flex flex-col gap-y-4 items-center pt-[9px] pb-4 mx-2 mt-2 rounded-xl"
+      className="w-[70px] h-full flex flex-col gap-y-4 items-center pt-[9px] pb-4 mx-2 rounded-xl"
       style={{
         backgroundImage: "url('/image/gal-1.jpg')",
         backgroundPosition: "center",
-        backgroundSize: "cover"
+        backgroundSize: "cover",
+        backgroundPositionX: '-77%'
       }}
     >
       <SidebarButton icon={FaEarthAsia} label={"Gio"} isActive={pathname.includes("/geoplatform")} />

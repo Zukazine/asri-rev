@@ -20,7 +20,7 @@ export const GeoplatformSection = ({
   const [on, toggle] = useToggle(true)
   
   return(
-    <div className="flex flex-col px-2 mt-3">
+    <div className="flex flex-col px-2 mt-3 z-10">
       <div className="flex items-center px-3.5 group">
         <Button variant="transparent" size="default" className="p-0.5 text-sm text-[#f9edffcc] shrink-0 size-6" onClick={toggle}>
           <FaCaretDown 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface MapComponentProps {
   onMapInit: (map: any) => void;
@@ -30,10 +31,10 @@ const MapComponent = ({ onMapInit }: MapComponentProps) => {
   }, [onMapInit]);
 
   return (
-    <div
-      id="map"
-      style={{ position: "fixed", width: "50%", height: "100vh" }}
-    ></div>
+    <div 
+      id='map' 
+      className="h-full w-1/2 flex-grow flex-shrink"
+    />
   );
 };
 

@@ -17,8 +17,8 @@ const GeoplatformLayout = ({
   children
 }: GeoplatformLayoutProps) => {
   return(
-    <div className="h-full">
-      <div className="flex h-[calc(100vh-2.5%)]">
+    <div className="h-full overflow-hidden">
+      <div className="flex h-[calc(100vh-1.5%)] mt-2">
         <SideBar />
         <ResizablePanelGroup
           direction="horizontal"
@@ -27,13 +27,15 @@ const GeoplatformLayout = ({
           <ResizablePanel
             defaultSize={20}
             minSize={11}
-            className="bg-[#5E2C5F]"
+            className="rounded-xl"
+            
           >
             <GeoplatformSidebar />
           </ResizablePanel>
-          <ResizableHandle/>
+          <ResizableHandle className="bg-transparent"/>
           <ResizablePanel
-            minSize={20}
+            defaultSize={80}
+            minSize={60}
           >
             {children}
           </ResizablePanel>

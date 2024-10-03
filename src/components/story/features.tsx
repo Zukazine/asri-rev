@@ -301,13 +301,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
   return (
     <div
       ref={featureElement}
-      style={{
-        width: "50%",
-        marginLeft: "50%",
-        overflowY: "auto",
-        height: "100vh",
-        backgroundColor: "#fafafa",
-      }}
+      className="w-1/2 h-full bg-gray-50 overflow-y-auto"
     >
       <section
         id="header"
