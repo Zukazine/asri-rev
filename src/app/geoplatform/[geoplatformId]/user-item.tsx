@@ -20,17 +20,17 @@ const userItemVariants = cva(
   }
 )
 
-interface userItemProps {
+interface UserItemProps {
   label?: string
   image?: string
   variant?: VariantProps<typeof userItemVariants>["variant"]
 }
 
-export const userItem = ({
+export const UserItem = ({
   label = "Member",
   image,
   variant
-}: userItemProps) => {
+}: UserItemProps) => {
   const geoplatformId = useGeoplatformId()
   const avatarFallback = label.charAt(0).toUpperCase()
 

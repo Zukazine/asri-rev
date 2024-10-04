@@ -1,5 +1,11 @@
 problem : 
-- jangan buat default kalau udah ada done
-- tambahin di sign up dan googlnya done
+- hide and show sidebar
+- sidebar compo perfecting
+- 
 - explanatory, story, document page
 - yang geoplatform dulu geiz
+
+lhs :
+sulsel
+lampung
+bengkulu

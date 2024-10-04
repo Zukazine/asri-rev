@@ -9,8 +9,10 @@ import {
 import { Hint } from "@/components/hint"
 import { Doc } from "../../../../convex/_generated/dataModel"
 import { ChevronDownIcon, ListFilter, SquarePen } from "lucide-react"
+import { HiChevronDoubleLeft } from "react-icons/hi" 
 // import { PreferencesModal } from "./preferences-modal"
 import { useState } from "react"
+import { useSidebar } from "@/components/sidebar-context"
 // import { InviteModal } from "./invite-modal"
 
 interface GeoplatformHeaderProps {
@@ -21,6 +23,7 @@ interface GeoplatformHeaderProps {
 export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderProps) => {
   const [preferencesOpen, setPreferencesOpen] = useState(false)
   const [inviteOpen, setInviteOpen] = useState(false)
+  // const { isMinimized } = useSidebar()
   
   return (
     <>
@@ -72,9 +75,9 @@ export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderPro
               <ListFilter className="size-4"/>
             </Button>
           </Hint>
-          <Hint label="New message" side="bottom">
+          <Hint label="Minimize sidebar" side="bottom">
             <Button variant="transparent" size="iconSm">
-              <SquarePen className="size-4"/>
+              <HiChevronDoubleLeft className="size-4"/>
             </Button>
           </Hint>
         </div>

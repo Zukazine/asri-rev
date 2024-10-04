@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation"
 import { LuLayers } from "react-icons/lu"
 import { SiMaterialformkdocs } from "react-icons/si"
 import { FaEarthAsia} from "react-icons/fa6"
+import { UserItem } from "./user-item"
+import { UserButton } from "@/features/auth/components/user-button"
 
 export const SideBar = () => {
   const pathname = usePathname()
@@ -24,6 +26,9 @@ export const SideBar = () => {
       <SidebarButton icon={LuLayers} label={"Ovy"} />
       <SidebarButton icon={SiMaterialformkdocs} label={"Formy"} />
       <SidebarButton icon={MoreHorizontal} label={"More"} />
+      <div className="flex flex-col items-center justify-center gap-y-1 mt-auto">
+        <UserButton />
+      </div>
     </aside>
   )
 }
