@@ -4,17 +4,20 @@ ASRI (All Sectors Recommendation Infrastructure) is a geospatially-driven framew
 
 ## Features
 
-1. **Geospatial Data Analysis and Modeling (GEE)**
-   - Utilizes Google Earth Engine (GEE) to analyze and model spatial data.
-   - Provides in-depth insights from processed geospatial data to inform policy and infrastructure decisions.
-2. **Spatial Data Overlay Simulation Platform**
+### 1. Geoplatform (Gio)
 
-   - Interactive platform for simulating the overlay of multiple spatial datasets.
-   - Supports scenario analysis for infrastructure planning and monitoring.
+- A versatile platform for geospatial data visualization and storytelling.
+- Includes a **Storymap** feature that combines interactive maps with narrative content, helping users explore and understand complex spatial relationships through engaging presentations.
 
-3. **Storymap**
-   - Combines data visualization and storytelling to present spatial insights.
-   - Interactive maps integrated with narrative content to engage users and explain complex spatial relationships.
+### 2. Spatial Data Overlay Simulation (Ovy)
+
+- An interactive tool for simulating the overlay of multiple spatial datasets.
+- Enables scenario-based analysis to support infrastructure planning, monitoring, and decision-making.
+
+### 3. Geotagging (Formy)
+
+- A streamlined form-based system for collecting geospatial data with geotagging capabilities.
+- Designed to support efficient data collection for infrastructure projects and field surveys.
 
 ## Sectors Involved
 

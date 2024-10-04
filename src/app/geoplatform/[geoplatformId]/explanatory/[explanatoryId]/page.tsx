@@ -1,9 +1,11 @@
+import { Explanatory } from "@/components/explanatory/explanatory";
+
 const ExplanatoryPage = () => {
-  return ( 
+  return (
     <div>
-      Explanatory Page
+      <Explanatory />
     </div>
   );
-}
- 
+};
+
 export default ExplanatoryPage;
