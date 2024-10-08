@@ -11,7 +11,7 @@ export const GeoplatformSidebar = () => {
   const geoplatformId = useGeoplatformId()
   
   const { data: geoplatform, isLoading: geoplatformLoading} = useGetGeoplatform({ id: geoplatformId })
-
+  
   if (geoplatformLoading) {
     return (
       <div 
