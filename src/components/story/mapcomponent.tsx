@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 
 interface MapComponentProps {
   onMapInit: (map: any) => void;
@@ -17,7 +17,7 @@ const MapComponent = ({ onMapInit }: MapComponentProps) => {
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/satellite-v9",
-      center: [122.773004, 0.669374],
+      center: [122.83143527925823, 0.6778139712794039],
       zoom: 9,
       bearing: 27,
       pitch: 45,
@@ -30,12 +30,7 @@ const MapComponent = ({ onMapInit }: MapComponentProps) => {
     };
   }, [onMapInit]);
 
-  return (
-    <div 
-      id='map' 
-      className="h-full w-1/2 flex-grow flex-shrink"
-    />
-  );
+  return <div id="map" className="h-full w-1/2 flex-grow flex-shrink" />;
 };
 
 export default MapComponent;

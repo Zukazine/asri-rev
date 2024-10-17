@@ -21,19 +21,19 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
 
   const chapters: Record<string, Chapter> = {
     header: {
-      center: [122.773004, 0.669374],
+      center: [122.83143527925823, 0.6778139712794039],
       zoom: 9,
       pitch: 10,
       bearing: 5,
     },
     bws: {
-      center: [122.98569986875489, 0.6296795796776695],
+      center: [122.98561828091697, 0.629789365803766],
       zoom: 17,
       pitch: 10,
       bearing: 5,
     },
     alopohu_1: {
-      center: [122.9235867, 0.5965877],
+      center: [122.922535, 0.597972],
       zoom: 16.5,
       pitch: 5,
       bearing: 150,
@@ -368,6 +368,13 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           Gorontalo, dan Staf Pusat Pengembangan Infrastruktur Wilayah Nasional
           BPIW.
         </p>
+
+        {/* Add the image */}
+        <img
+          src="/images/bws_1.jpg"
+          alt="BWS Sulawesi II Gorontalo"
+          className="w-full h-auto mt-4"
+        />
 
         <h4>Rangkuman Diskusi</h4>
         <ul>
