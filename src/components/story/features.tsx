@@ -33,7 +33,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       bearing: 5,
     },
     alopohu_1: {
-      center: [122.922535, 0.597972],
+      center: [122.9235867, 0.5965877],
       zoom: 16.5,
       pitch: 5,
       bearing: 150,
@@ -312,6 +312,13 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           di Gorontalo 2024
         </h3>
 
+        {/* Add the image */}
+        <img
+          src="/images/judul.jpeg"
+          alt="Survei Validasi"
+          className="w-full h-auto mt-4"
+        />
+
         <h4>Latar Belakang</h4>
         <ul>
           <li>
@@ -371,7 +378,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
 
         {/* Add the image */}
         <img
-          src="/images/bws_1.jpg"
+          src="/images/bws.png"
           alt="BWS Sulawesi II Gorontalo"
           className="w-full h-auto mt-4"
         />
@@ -428,6 +435,13 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           banjir pada musim hujan, yang merusak tanaman padi. Selain itu, pada
           musim kemarau, wilayah ini kekurangan air hingga mencapai dua minggu.
         </p>
+
+        {/* Add the image */}
+        <img
+          src="/images/alopohu_1.png"
+          alt="Survei Validasi"
+          className="w-full h-auto mt-4"
+        />
       </section>
       <section
         id="alopohu_2"
@@ -443,6 +457,12 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           ini sesuai dengan hasil pemodelan analisis spasial. Masalah yang
           ditemukan adalah faktor kekeringan ketika tidak pada musim hujan.
         </p>
+        {/* Add the image */}
+        <img
+          src="/images/alopohu_2.jpg"
+          alt="Survei Validasi"
+          className="w-full h-auto mt-4"
+        />
       </section>
       <section
         id="lomaya_1"
@@ -458,6 +478,12 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           wilayah tersebut sesuai dengan hasil pemodelan. Hal ini ditunjukkan
           pada area sawah tersebut memiliki produktivitas panen yang baik.
         </p>
+        {/* Add the image */}
+        <img
+          src="/images/lomaya.jpg"
+          alt="Survei Validasi"
+          className="w-full h-auto mt-4"
+        />
       </section>
       <section
         id="lomaya_2"
@@ -471,6 +497,12 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah
           tersebut sesuai dengan hasil pemodelan.
         </p>
+        {/* Add the image */}
+        <img
+          src="/images/lomaya_2.jpg"
+          alt="Survei Validasi"
+          className="w-full h-auto mt-4"
+        />
       </section>
       <section
         id="ekstensifikasi"
@@ -491,6 +523,12 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           dipertimbangkan faktor lain seperti izin pembebasan lahan, jumlah SDM
           seperti petani, saluran air sekunder, dan pupuk.
         </p>
+        {/* Add the image */}
+        <img
+          src="/images/ekstensifikasi.jpg"
+          alt="Survei Validasi"
+          className="w-full h-auto mt-4"
+        />
       </section>
     </div>
   );
