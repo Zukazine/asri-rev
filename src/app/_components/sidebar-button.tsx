@@ -1,21 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react"
+import Link from "next/link";
 import { IconType } from "react-icons/lib"
 
 interface SidebarButtonProps {
-  icon: LucideIcon | IconType,
+  icon: LucideIcon | IconType
   label: string
-  isActive?: boolean;
+  link?: string
+  isActive?: boolean
 }
 
 export const SidebarButton = ({
   icon: Icon,
   label,
+  link,
   isActive
 }: SidebarButtonProps) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-y-0.5 cursor-pointer group">
+    <Link 
+      // janlup link default diganti
+      href={link ? link : '/geoplatform'}
+      className="flex flex-col items-center justify-center gap-y-0.5 cursor-pointer group"
+    >
       <Button
         variant="transparent"
         className={cn("size-9 p-2 group-hover:bg-accent/15 group-hover:backdrop-blur-xl",
@@ -27,6 +34,6 @@ export const SidebarButton = ({
       <span className="text-[11px] text-white group-hover:text-accent">
         {label}
       </span>
-    </div>
+    </Link>
   )
 }

@@ -31,7 +31,9 @@ export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderPro
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="transparent" className="font-semibold text-lg w-auto p-1.5 overflow-hidden" size="sm">
-              <span className="truncate">{geoplatform?.name}</span>
+              {/* Name of platform */}
+              {/* <span className="truncate">{geoplatform?.name}</span> */}
+              <span className="truncate">Geoplatform</span>
               <ChevronDownIcon className="size-4 ml-1 shrink-0"/>
             </Button>
           </DropdownMenuTrigger>

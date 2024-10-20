@@ -6,6 +6,7 @@ import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server"
 import { Toaster } from "@/components/ui/sonner";
 import { JotaiProvider } from "@/components/jotai-provider";
 import { SideBar } from "./_components/sidebar";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -35,7 +36,7 @@ export default function RootLayout({
               <Toaster />
               <div className="flex h-[calc(100vh-1.5%)] mt-2">
                 <SideBar />
-                <div className="border w-full mr-2">
+                <div className="w-full mr-2">
                   {children}
                 </div>
               </div>

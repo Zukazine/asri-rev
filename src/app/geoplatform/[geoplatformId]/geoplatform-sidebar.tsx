@@ -6,6 +6,8 @@ import { SidebarItem } from "./sidebar-item"
 import { GeoplatformHeader } from "./geoplatform-header"
 import { useMemo } from "react"
 import { Glasses } from "@/components/glasses"
+import { RiBook3Line } from 'react-icons/ri'
+import { BiRocket } from 'react-icons/bi'
 
 export const GeoplatformSidebar = () => {
   const geoplatformId = useGeoplatformId()
@@ -71,7 +73,7 @@ export const GeoplatformSidebar = () => {
         />
       </div>
       <GeoplatformSection
-        label="Channels"
+        label="Irigasi-Research"
         hint="New channel"
         onNew={() => {}}
       >
@@ -85,14 +87,14 @@ export const GeoplatformSidebar = () => {
           />
         ))} */}
         <SidebarItem
-          icon={HashIcon}
-          label={"general"}
+          icon={RiBook3Line}
+          label={"Explanatory"}
           id={'123123'}
           variant={"active"}
         />
         <SidebarItem
-          icon={HashIcon}
-          label={"workspace"}
+          icon={BiRocket}
+          label={"Storytell"}
           id={'123123'}
         />
       </GeoplatformSection>
