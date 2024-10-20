@@ -12,7 +12,7 @@ import { ChevronDownIcon, ListFilter, SquarePen } from "lucide-react"
 import { HiChevronDoubleLeft } from "react-icons/hi" 
 // import { PreferencesModal } from "./preferences-modal"
 import { useState } from "react"
-import { useSidebar } from "@/components/sidebar-context"
+import { useMinimizeSidebar } from "@/features/geoplatforms/store/use-minimize-sidebar"
 // import { InviteModal } from "./invite-modal"
 
 interface GeoplatformHeaderProps {
@@ -23,12 +23,10 @@ interface GeoplatformHeaderProps {
 export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderProps) => {
   const [preferencesOpen, setPreferencesOpen] = useState(false)
   const [inviteOpen, setInviteOpen] = useState(false)
-  // const { isMinimized } = useSidebar()
-  
+  const [_minimize, setMinimize] = useMinimizeSidebar()
+
   return (
     <>
-      {/* <InviteModal open={inviteOpen} setOpen={setInviteOpen} name={workspace.name} joinCode={workspace.joinCode}/> */}
-      {/* <PreferencesModal open={preferencesOpen} setOpen={setPreferencesOpen} initialValue={workspace.name}/> */}
       <div className="flex items-center justify-between px-4 h-[49px] gap-0.5 z-10">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -76,7 +74,11 @@ export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderPro
             </Button>
           </Hint>
           <Hint label="Minimize sidebar" side="bottom">
-            <Button variant="transparent" size="iconSm">
+            <Button 
+              variant="transparent" 
+              size="iconSm"
+              onClick={() => {setMinimize(true)}}
+            >
               <HiChevronDoubleLeft className="size-4"/>
             </Button>
           </Hint>
