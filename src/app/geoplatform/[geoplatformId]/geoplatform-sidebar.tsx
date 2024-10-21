@@ -1,15 +1,18 @@
+'use client'
+
 import { useGetGeoplatform } from "@/features/geoplatforms/api/use-get-geoplatform"
 import { useGeoplatformId } from "@/hooks/use-geoplatform-id"
 import { AlertTriangle, HashIcon, Loader, MessageSquareText, SendHorizonal } from "lucide-react"
 import { GeoplatformSection } from "./geoplatform-section"
 import { SidebarItem } from "./sidebar-item"
 import { GeoplatformHeader } from "./geoplatform-header"
-import { useMemo } from "react"
 import { Glasses } from "@/components/glasses"
 import { RiBook3Line } from 'react-icons/ri'
 import { BiRocket } from 'react-icons/bi'
+import { usePathname } from "next/navigation"
 
 export const GeoplatformSidebar = () => {
+  const pathname = usePathname()
   const geoplatformId = useGeoplatformId()
   
   const { data: geoplatform, isLoading: geoplatformLoading} = useGetGeoplatform({ id: geoplatformId })
@@ -90,12 +93,15 @@ export const GeoplatformSidebar = () => {
           icon={RiBook3Line}
           label={"Explanatory"}
           id={'123123'}
-          variant={"active"}
+          variant={pathname.includes("/explanatory") ? "active" : "default"}
+          type="Explanatory"
         />
         <SidebarItem
           icon={BiRocket}
-          label={"Storytell"}
+          label={"Story"}
           id={'123123'}
+          type='Story'
+          variant={pathname.includes("/story") ? "active" : "default"}
         />
       </GeoplatformSection>
       <Glasses className="z-1"/>

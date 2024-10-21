@@ -30,7 +30,7 @@ export default function Home() {
         router.push(`geoplatform/${id}`)
       },})
     } else {
-      router.replace(`/geoplatform/${geoplatformId}`)
+      router.replace(`/geoplatform/${geoplatformId}/explanatory/1`)
     }
   }
 

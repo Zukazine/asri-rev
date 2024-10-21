@@ -26,14 +26,16 @@ interface SidebarItemProps {
   label: string;
   id: string;
   icon: LucideIcon | IconType
-  variant?: VariantProps<typeof SidebarItemVariants>["variant"]
+  variant?: VariantProps<typeof SidebarItemVariants>["variant"],
+  type? : 'Explanatory' | 'Story' | 'Document'
 }
 
 export const SidebarItem = ({
   label,
   id,
   icon: Icon,
-  variant
+  variant,
+  type
 }: SidebarItemProps) => {
   const geoplatformId = useGeoplatformId()
 
@@ -44,7 +46,7 @@ export const SidebarItem = ({
       asChild 
       className={cn(SidebarItemVariants({ variant: variant }))}
     >
-      <Link href={`/geoplatform/${geoplatformId}`}>
+      <Link href={`/geoplatform/${geoplatformId}/${type?.toLowerCase()}/1`}>
         <Icon className="size-3.5 mr-1 shrink-0"/>
         <span className="text-sm truncate">{label}</span>
       </Link>
