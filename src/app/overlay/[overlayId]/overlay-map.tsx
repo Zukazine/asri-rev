@@ -36,8 +36,9 @@ export const OverlayMap = () => {
     mapRef.current?.on('style.load', () => {
       mapRef.current?.addSource('radar', {
         type: 'image',
-        url: show ? '/raster/jatim-smi-rev.png' : '',
+        url: show ? '/raster/Frame 8.png' : '',
         coordinates: [
+          // JATIM
           [111.06910492418233, -6.693749675803972], // Top Left (flipped to Bottom Left)
           [114.28852741861942, -6.811144452435599], // Top Right (flipped to Bottom Right)
           [114.3254808725255, -8.550615623426584], // Bottom Right (flipped to Top Right)

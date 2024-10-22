@@ -32,6 +32,21 @@ export const OverlaySidebar = () => {
         <SidebarItem
           label={"VCI"}
         />
+        <SidebarItem
+          label={"VXCI"}
+        />
+        <SidebarItem
+          label={"OII"}
+        />
+        <SidebarItem
+          label={"DKI"}
+        />
+        <SidebarItem
+          label={"DIY"}
+        />
+        <SidebarItem
+          label={"NAD"}
+        />
       </OverlaySection>
       <Glasses className="z-1"/>
     </div>
