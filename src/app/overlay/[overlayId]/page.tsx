@@ -1,7 +1,9 @@
+import { OverlayMap } from "./overlay-map";
+
 const OverlayPage = () => {
   return ( 
-    <div>
-      Overlay Page
+    <div className="relative">
+      <OverlayMap />
     </div>
   );
 }

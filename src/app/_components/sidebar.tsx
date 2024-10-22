@@ -20,7 +20,8 @@ export const SideBar = () => {
   
   return (
     <aside 
-      className={`${pathname === '/' ? "hidden" : "w-[70px]"} h-full flex flex-col gap-y-4 items-center pt-[9px] pb-4 mx-2 rounded-xl`}
+      // @ts-ignore
+      className={`${pathname === '/' || pathname === '/auth' ? "hidden" : "w-[70px]"} h-full flex flex-col gap-y-4 items-center pt-[9px] pb-4 mx-2 rounded-xl`}
       style={{
         backgroundImage: "url('/image/gal-1.jpg')",
         backgroundPosition: "center",

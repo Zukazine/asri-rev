@@ -10,7 +10,7 @@ export const AuthScreen = () => {
   
   return (
     <div 
-      className="h-full flex items-center justify-center"
+      className="h-full absolute top-0 w-full flex items-center justify-center"
       style={{
         backgroundImage: "url('/image/gal-2.jpg')",
         backgroundPosition: 'center',
