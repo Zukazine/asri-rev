@@ -10,10 +10,12 @@ import { Glasses } from "@/components/glasses"
 import { RiBook3Line } from 'react-icons/ri'
 import { BiRocket } from 'react-icons/bi'
 import { usePathname } from "next/navigation"
+import { useShowLayer } from "@/features/overlay/store/useShowLayer"
 
 export const OverlaySidebar = () => {
   const pathname = usePathname()
   
+  const [show, setShow] = useShowLayer()
 
   return (
     <div 

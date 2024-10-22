@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { MdOutlineLayers } from 'react-icons/md'
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
-
+import { useShowLayer } from "@/features/overlay/store/useShowLayer"
 
 interface SidebarItemProps {
   label: string;
@@ -18,7 +18,10 @@ export const SidebarItem = ({
   label,
 }: SidebarItemProps) => {
   const [hover, setHover] = useState<boolean>(false)
-  const [show, setShow] = useState<boolean>(true)
+  const [eye, setEye] = useState<boolean>(true)
+  const [show, setShow] = useShowLayer()
+
+  console.log(show)
 
   return (
     <Button 
@@ -38,12 +41,12 @@ export const SidebarItem = ({
         >
         <>
           <FaRegEye 
-            onClick={() => {setShow(false)}}
-            className={!show ? "hidden" : ""}
+            onClick={() =>  {setShow(!show), setEye(false)}}
+            className={!eye ? "hidden" : ""}
           />
           <FaRegEyeSlash 
-            onClick={() => {setShow(true)}}
-            className={!show ? "" : "hidden"}
+            onClick={() => {setEye(true), setShow(!show)}}
+            className={!eye ? "" : "hidden"}
           />
         </>
         </div>
