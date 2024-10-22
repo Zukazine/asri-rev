@@ -34,7 +34,7 @@ export const OverlayMap = () => {
     mapRef.current?.on("style.load", () => {
       mapRef.current?.addSource("radar", {
         type: "image",
-        url: show ? "/raster/wbi-jatim.png" : "",
+        url: show ? "/raster/smi-jatim.png" : "",
         coordinates: [
           // JATIM
           [110.8826, -6.7379], // Top Left (flipped to Bottom Left)
