@@ -12,7 +12,7 @@ export const OverlayMap = () => {
   
 
   console.log('Mapbox Token:', MAPBOX_TOKEN);
-  const [show, setShow] = useShowLayer()
+  const [show, _setShow] = useShowLayer()
 
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const OverlayMap = () => {
       center: [112.53323825007129, -7.727545200537309],
       zoom: 7.5,
     });
-    
+
     mapRef.current?.on('style.load', () => {
       mapRef.current?.addSource('radar', {
         type: 'image',
