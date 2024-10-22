@@ -37,10 +37,10 @@ export const OverlayMap = () => {
         url: show ? "/raster/wbi-vci.png" : "",
         coordinates: [
           // JATIM
-          [110.8826, -6.7379], // Top Left (flipped to Bottom Left)
-          [114.4629, -6.7379], // Top Right (flipped to Bottom Right)
-          [114.4629, -8.6388], // Bottom Right (flipped to Top Right)
-          [110.8826, -8.6388], // Bottom Left (flipped to Top Left)
+          [110.8818, -6.7514], // Top Left (flipped to Bottom Left)
+          [114.4548, -6.7514], // Top Right (flipped to Bottom Right)
+          [114.4548, -8.6345], // Bottom Right (flipped to Top Right)
+          [110.8818, -8.6345], // Bottom Left (flipped to Top Left)
         ],
       });
       mapRef.current?.addLayer({
