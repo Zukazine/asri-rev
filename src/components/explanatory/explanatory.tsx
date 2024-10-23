@@ -4,7 +4,7 @@ import { Layers } from "./layers";
 
 export const Explanatory = () => {
   return (
-    <div className="h-full border ml-2 rounded-xl bg-neutral-300 overflow-y-scroll relative">
+    <div className="h-full border ml-2 rounded-xl bg-[#E5ECEF] overflow-y-scroll relative">
       <EarthEngine />
       <Descriptive 
         logo={"/image/logo-1.svg"}

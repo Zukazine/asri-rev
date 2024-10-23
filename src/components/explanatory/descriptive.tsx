@@ -14,7 +14,7 @@ export const Descriptive = ({
   description
 }: DescriptiveProps) => {
   return (
-    <div className='grid grid-cols-2 bg-[#EFEEE5]'>
+    <div className='grid grid-cols-2'>
       <div className='h-screen w-full flex flex-col items-center justify-center'>
         <div className='flex items-center justify-center size-2/3'>
           <img
