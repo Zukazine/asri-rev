@@ -301,130 +301,62 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
   return (
     <div
       ref={featureElement}
-      className="w-1/2 h-full bg-gray-50 overflow-y-auto"
+      className="w-1/2 h-full bg-[#E5ECEF] overflow-y-auto"
     >
       <section
         id="header"
-        className={activeChapter === "header" ? "active" : ""}
+        className={`${activeChapter === "header" ? "active" : ""} flex flex-col gap-4`}
       >
-        <h3>
-          Studi Validasi Hasil Pemodelan Spasial Infrastruktur Irigasi Permukaan
-          di Gorontalo 2024
-        </h3>
+        <p className="story-section-title">
+          Studi Validasi Hasil Pemodelan Spasial Infrastruktur Irigasi Permukaan di Gorontalo 2024
+        </p>
 
-        {/* Add the image */}
         <img
           src="/images/judul.jpeg"
           alt="Survei Validasi"
-          className="w-full h-auto mt-4"
+          className="w-full h-auto"
         />
 
-        <h4>Latar Belakang</h4>
-        <ul>
-          <li>
-            Gorontalo diarahkan menjadi salah satu sentra pertanian untuk
-            mendukung pasokan pangan di regional Pulau Sulawesi dan KTI (RPIW
-            Prov. Gorontalo 2025 – 2034).
-          </li>
-          <li>
-            Terdapat tren panen padi yang berbanding terbalik antara
-            produktivitas dan luas panen (BPS 2023).
-          </li>
-          <li>
-            Ada indikasi kendala berupa ketidakselarasan infrastruktur pertanian
-            yang menyebabkan produktivitas lahan tidak optimal (RPIW Prov.
-            Gorontalo 2025 – 2034).
-          </li>
-        </ul>
-
-        <h4>Tujuan</h4>
-        <ul>
-          <li>
-            Validasi identifikasi kesesuaian hasil analisis spasial dengan
-            kondisi lapangan.
-          </li>
-          <li>Evaluasi parameter yang digunakan dalam analisis spasial.</li>
-          <li>
-            Identifikasi permasalahan di daerah irigasi yang belum optimal.
-          </li>
-        </ul>
-
-        <h4>Manfaat Hasil Studi</h4>
-        <ul>
-          <li>
-            Mendukung integrasi irigasi primer (pusat) dan irigasi tersier
-            (daerah) untuk meningkatkan produktivitas lahan pertanian.
-          </li>
-          <li>
-            Mendukung pengembangan hilirisasi tanaman pangan Gorontalo,
-            memberikan nilai tambah terhadap komoditas unggulan dari hasil
-            pemodelan spasial.
-          </li>
-        </ul>
-      </section>
-
-      <section id="bws" className={activeChapter === "bws" ? "active" : ""}>
-        <h3>Balai Wilayah Sungai Sulawesi II Gorontalo</h3>
-
-        <p>
-          Balai Wilayah Sungai Sulawesi II Gorontalo merupakan lembaga yang
-          berperan dalam pengelolaan sumber daya air dan infrastruktur irigasi
-          di wilayah Gorontalo. Pada Juli 2024, diadakan pemaparan dan diskusi
-          terkait dengan pemodelan spasial yang dihadiri oleh Kepala BWS
-          Sulawesi II Gorontalo, Kepala Seksi Pelaksanaan BWS Sulawesi II
-          Gorontalo, dan Staf Pusat Pengembangan Infrastruktur Wilayah Nasional
-          BPIW.
+        <p className="story-topic"># Latar Belakang</p>
+        <p className="story-description">
+          Gorontalo diarahkan menjadi salah satu sentra pertanian untuk mendukung pasokan pangan di regional Pulau Sulawesi dan KTI (RPIW Prov. Gorontalo 2025 – 2034). Terdapat tren panen padi yang berbanding terbalik antara produktivitas dan luas panen (BPS 2023). Ada indikasi kendala berupa ketidakselarasan infrastruktur pertanian yang menyebabkan produktivitas lahan tidak optimal (RPIW Prov. Gorontalo 2025 – 2034).
         </p>
 
-        {/* Add the image */}
+        <p className="story-topic"># Tujuan</p>
+        <p className="story-description"> 
+          Validasi identifikasi kesesuaian hasil analisis spasial dengan kondisi lapangan. Evaluasi parameter yang digunakan dalam analisis spasial. Identifikasi permasalahan di daerah irigasi yang belum optimal.
+        </p>
+
+        <p className="story-topic"># Manfaat Hasil Studi</p>
+        <p className="story-description">
+          Mendukung integrasi irigasi primer (pusat) dan irigasi tersier (daerah) untuk meningkatkan produktivitas lahan pertanian. Mendukung pengembangan hilirisasi tanaman pangan Gorontalo, memberikan nilai tambah terhadap komoditas unggulan dari hasil pemodelan spasial.
+        </p>
+      </section>
+
+      <section id="bws" className={`${activeChapter === "bws" ? "active" : ""} flex flex-col gap-4`}>
+        <p className="story-section-title">Balai Wilayah Sungai Sulawesi II Gorontalo</p>
+
+        <p className="story-description">Balai Wilayah Sungai Sulawesi II Gorontalo merupakan lembaga yang berperan dalam pengelolaan sumber daya air dan infrastruktur irigasi di wilayah Gorontalo. Pada Juli 2024, diadakan pemaparan dan diskusi terkait dengan pemodelan spasial yang dihadiri oleh Kepala BWS Sulawesi II Gorontalo, Kepala Seksi Pelaksanaan BWS Sulawesi II Gorontalo, dan Staf Pusat Pengembangan Infrastruktur Wilayah Nasional BPIW.
+        </p>
+
         <img
           src="/images/bws.png"
           alt="BWS Sulawesi II Gorontalo"
-          className="w-full h-auto mt-4"
+          className="w-full h-auto"
         />
 
-        <h4>Rangkuman Diskusi</h4>
-        <ul>
-          <li>
-            Pemodelan spasial dapat digunakan untuk pengambilan keputusan.
-          </li>
-          <li>
-            Resolusi piksel yang lebih baik meningkatkan akurasi pemodelan.
-          </li>
-          <li>
-            Evaluasi infrastruktur irigasi sebaiknya menggunakan Indeks Kinerja
-            Sistem Irigasi (IKSI) yang terdiri dari 8 parameter penilaian.
-          </li>
-          <li>
-            Data menunjukkan peningkatan luas lahan panen, tetapi penurunan
-            produktivitas.
-          </li>
-          <li>
-            Penyebab penurunan produktivitas tidak hanya faktor irigasi, tetapi
-            juga pupuk dan tenaga kerja.
-          </li>
-          <li>Pihak BWS hanya dapat memenuhi kebutuhan air.</li>
-          <li>
-            Infrastruktur yang belum optimal perlu dilakukan rehabilitasi dan
-            perbaikan.
-          </li>
-          <li>
-            Kesulitan dalam pemodelan terkait sensitivitas; perubahan parameter
-            dapat membuat model menjadi tidak optimal.
-          </li>
-          <li>
-            Model yang baik dapat digunakan di seluruh Indonesia dan perlu
-            diperbaiki seiring perkembangan teknologi.
-          </li>
-        </ul>
+        <p className="story-topic"># Rangkuman Diskusi</p>
+        <p className="story-description">
+          Pemodelan spasial dapat digunakan untuk pengambilan keputusan. Resolusi piksel yang lebih baik meningkatkan akurasi pemodelan. Evaluasi infrastruktur irigasi sebaiknya menggunakan Indeks Kinerja Sistem Irigasi (IKSI) yang terdiri dari 8 parameter penilaian. Data menunjukkan peningkatan luas lahan panen, tetapi penurunan produktivitas. Penyebab penurunan produktivitas tidak hanya faktor irigasi, tetapi juga pupuk dan tenaga kerja. Pihak BWS hanya dapat memenuhi kebutuhan air. Infrastruktur yang belum optimal perlu dilakukan rehabilitasi dan perbaikan Kesulitan dalam pemodelan terkait sensitivitas; perubahan parameter dapat membuat model menjadi tidak optimal. Model yang baik dapat digunakan di seluruh Indonesia dan perlu diperbaiki seiring perkembangan teknologi.
+        </p>
       </section>
 
       <section
         id="alopohu_1"
-        className={activeChapter === "alopohu_1" ? "active" : ""}
+        className={`${activeChapter === "alopohu_1" ? "active" : ""} flex flex-col gap-4`}
       >
-        <h3>Titik Pertama - D.I. Alopohu</h3>
-        <p>
+        <p className="story-section-title">Titik Pertama - D.I. Alopohu</p>
+        <p className="story-description">
           Tinjauan titik pertama terletak pada D.I. Alopohu dengan koordinat
           0°37'11.8"N 122°56'29.1"E. Berdasarkan hasil pemodelan, piksel pada
           koordinat tersebut menunjukkan bahwa wilayah ini tergolong dalam
@@ -436,7 +368,6 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           musim kemarau, wilayah ini kekurangan air hingga mencapai dua minggu.
         </p>
 
-        {/* Add the image */}
         <img
           src="/images/alopohu_1.png"
           alt="Survei Validasi"
@@ -445,10 +376,10 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       </section>
       <section
         id="alopohu_2"
-        className={activeChapter === "alopohu_2" ? "active" : ""}
+        className={`${activeChapter === "alopohu_2" ? "active" : ""} flex flex-col gap-4`}
       >
-        <h3>Titik Kedua - D.I. Alopohu</h3>
-        <p>
+        <p className="story-section-title">Titik Kedua - D.I. Alopohu</p>
+        <p className="story-description">
           Tinjauan titik kedua terletak pada D.I. Alopohu pada koordinat
           0°36'12.10"N 122°55'43.04"E yang merupakan usulan tambahan dari Unit
           Pengelola Daerah Irigasi Alopohu. Berdasarkan hasil pemodelan, piksel
@@ -466,10 +397,10 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       </section>
       <section
         id="lomaya_1"
-        className={activeChapter === "lomaya_1" ? "active" : ""}
+        className={`${activeChapter === "lomaya_1" ? "active" : ""} flex flex-col gap-4`}
       >
-        <h3>Titik Ketiga - D.I. Lomaya</h3>
-        <p>
+        <p className="story-section-title">Titik Ketiga - D.I. Lomaya</p>
+        <p className="story-description">
           Tinjauan titik ketiga merupakan area D.I. berikutnya yakni D.I. Lomaya
           yang terletak pada koordinat 0°36'08.3"N 123°05'07.8"E sebagai titik
           tambahan dari usulan pihak BBWS II Sulawesi. Berdasarkan hasil
@@ -478,7 +409,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
           wilayah tersebut sesuai dengan hasil pemodelan. Hal ini ditunjukkan
           pada area sawah tersebut memiliki produktivitas panen yang baik.
         </p>
-        {/* Add the image */}
+
         <img
           src="/images/lomaya.jpg"
           alt="Survei Validasi"
@@ -487,10 +418,10 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       </section>
       <section
         id="lomaya_2"
-        className={activeChapter === "lomaya_2" ? "active" : ""}
+        className={`${activeChapter === "lomaya_2" ? "active" : ""} flex flex-col gap-4`}
       >
-        <h3>Titik Keempat - D.I. Lomaya</h3>
-        <p>
+        <p className="story-section-title">Titik Keempat - D.I. Lomaya</p>
+        <p className="story-description">
           Tinjauan titik keempat yang berlokasi di D.I. Lomaya tepatnya pada
           koordinat 0°36'19.5"N 123°04'19.9"E. Berdasarkan hasil pemodelan,
           piksel pada area tersebut tergolong sudah optimal. Survei lapangan
@@ -506,10 +437,10 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       </section>
       <section
         id="ekstensifikasi"
-        className={activeChapter === "ekstensifikasi" ? "active" : ""}
+        className={`${activeChapter === "ekstensifikasi" ? "active" : ""} flex flex-col gap-4`}
       >
-        <h3>Titik Terakhir - Ekstensifikasi</h3>
-        <p>
+        <p className="story-section-title">Titik Terakhir - Ekstensifikasi</p>
+        <p className="story-description">
           Tinjauan titik terakhir sebagai validasi model dalam isu
           ekstensifikasi irigasi berlokasi di luar area D.I. Lomaya yakni di
           titik 0°32'20.3"N 123°07'00.4"E. Berdasarkan hasil pemodelan, piksel

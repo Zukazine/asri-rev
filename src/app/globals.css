@@ -11,10 +11,8 @@ body,
 
 section {
   padding: 25px 50px;
-  line-height: 40px;
   border-bottom: 1px solid #ddd;
   opacity: 0.25;
-  font-size: 13px;
   min-height: 200px;
 }
 
@@ -24,7 +22,19 @@ section.active {
 
 section:last-child {
   border-bottom: none;
-  margin-bottom: 200px;
+  /* margin-bottom: 200px; */
+}
+
+.story-section-title {
+  @apply text-2xl font-bold font-gilroy text-gray-600
+}
+
+.story-topic {
+  @apply text-xl font-bold font-gilroy text-gray-600
+}
+
+.story-description {
+  @apply leading-loose tracking-normal text-[13px]
 }
 
 @layer base {
@@ -137,3 +147,4 @@ section:last-child {
   font-weight: 500;
   font-style: normal;
 }
+
