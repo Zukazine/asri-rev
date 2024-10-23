@@ -98,7 +98,7 @@ export const GeoplatformSidebar = () => {
         />
         <SidebarItem
           icon={BiRocket}
-          label={"Story"}
+          label={"Story : Validasi Model"}
           id={'123123'}
           type='Story'
           variant={pathname.includes("/story") ? "active" : "default"}
