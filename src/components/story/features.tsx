@@ -1,6 +1,6 @@
 "use client";
 
-import mapboxgl from "mapbox-gl";
+import { Map } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 
 // Define the types for the chapters
@@ -12,7 +12,7 @@ interface Chapter {
 }
 
 interface FeaturesComponentProps {
-  map: any; // Type can be improved if you have a specific type for your map
+  map: Map; // Type can be improved if you have a specific type for your map
 }
 
 const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
@@ -150,9 +150,9 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
             // Load custom marker image
             map.loadImage(
               "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
-              (error: any, image: any) => {
+              (error: Error | undefined | null, image: HTMLImageElement | ImageBitmap | ImageData | null | undefined ) => {
                 if (error) throw error;
-                map.addImage("custom-marker", image);
+                map.addImage("custom-marker", image as HTMLImageElement | ImageBitmap | ImageData);
               }
             );
 
@@ -357,15 +357,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       >
         <p className="story-section-title">Titik Pertama - D.I. Alopohu</p>
         <p className="story-description">
-          Tinjauan titik pertama terletak pada D.I. Alopohu dengan koordinat
-          0°37'11.8"N 122°56'29.1"E. Berdasarkan hasil pemodelan, piksel pada
-          koordinat tersebut menunjukkan bahwa wilayah ini tergolong dalam
-          kategori sangat kurang optimal. Survei lapangan menunjukkan bahwa
-          kategori evaluasi infrastruktur irigasi di wilayah ini sesuai dengan
-          hasil pemodelan yakni sangat kurang optimal. Tidak adanya saluran
-          pembuang serta kondisi topografi wilayah ini menyebabkan terjadinya
-          banjir pada musim hujan, yang merusak tanaman padi. Selain itu, pada
-          musim kemarau, wilayah ini kekurangan air hingga mencapai dua minggu.
+          Tinjauan titik pertama terletak pada D.I. Alopohu dengan koordinat 0&deg;37&prime;11.8&Prime;N 122&deg;56&prime;29.1&Prime;E. Berdasarkan hasil pemodelan, piksel pada koordinat tersebut menunjukkan bahwa wilayah ini tergolong dalam kategori sangat kurang optimal. Survei lapangan menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah ini sesuai dengan hasil pemodelan yakni sangat kurang optimal. Tidak adanya saluran pembuang serta kondisi topografi wilayah ini menyebabkan terjadinya banjir pada musim hujan, yang merusak tanaman padi. Selain itu, pada musim kemarau, wilayah ini kekurangan air hingga mencapai dua minggu.
         </p>
 
         <img
@@ -380,13 +372,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       >
         <p className="story-section-title">Titik Kedua - D.I. Alopohu</p>
         <p className="story-description">
-          Tinjauan titik kedua terletak pada D.I. Alopohu pada koordinat
-          0°36'12.10"N 122°55'43.04"E yang merupakan usulan tambahan dari Unit
-          Pengelola Daerah Irigasi Alopohu. Berdasarkan hasil pemodelan, piksel
-          pada area tersebut tergolong sangat kurang optimal. Survei lapangan
-          menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah
-          ini sesuai dengan hasil pemodelan analisis spasial. Masalah yang
-          ditemukan adalah faktor kekeringan ketika tidak pada musim hujan.
+          Tinjauan titik kedua terletak pada D.I. Alopohu pada koordinat 0&deg;36&prime;12.10&Prime;N 122&deg;55&prime;43.04&Prime;E yang merupakan usulan tambahan dari Unit Pengelola Daerah Irigasi Alopohu. Berdasarkan hasil pemodelan, piksel pada area tersebut tergolong sangat kurang optimal. Survei lapangan menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah ini sesuai dengan hasil pemodelan analisis spasial. Masalah yang ditemukan adalah faktor kekeringan ketika tidak pada musim hujan.
         </p>
         {/* Add the image */}
         <img
@@ -401,13 +387,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       >
         <p className="story-section-title">Titik Ketiga - D.I. Lomaya</p>
         <p className="story-description">
-          Tinjauan titik ketiga merupakan area D.I. berikutnya yakni D.I. Lomaya
-          yang terletak pada koordinat 0°36'08.3"N 123°05'07.8"E sebagai titik
-          tambahan dari usulan pihak BBWS II Sulawesi. Berdasarkan hasil
-          pemodelan, piksel pada area tersebut tergolong cukup optimal. Survei
-          lapangan menunjukkan bahwa kategori evaluasi infrastruktur irigasi di
-          wilayah tersebut sesuai dengan hasil pemodelan. Hal ini ditunjukkan
-          pada area sawah tersebut memiliki produktivitas panen yang baik.
+          Tinjauan titik ketiga merupakan area D.I. berikutnya yakni D.I. Lomaya yang terletak pada koordinat 0&deg;36&prime;08.3&Prime;N 123&deg;05&prime;07.8&Prime;E sebagai titik tambahan dari usulan pihak BBWS II Sulawesi. Berdasarkan hasil pemodelan, piksel pada area tersebut tergolong cukup optimal. Survei lapangan menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah tersebut sesuai dengan hasil pemodelan. Hal ini ditunjukkan pada area sawah tersebut memiliki produktivitas panen yang baik.
         </p>
 
         <img
@@ -422,11 +402,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       >
         <p className="story-section-title">Titik Keempat - D.I. Lomaya</p>
         <p className="story-description">
-          Tinjauan titik keempat yang berlokasi di D.I. Lomaya tepatnya pada
-          koordinat 0°36'19.5"N 123°04'19.9"E. Berdasarkan hasil pemodelan,
-          piksel pada area tersebut tergolong sudah optimal. Survei lapangan
-          menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah
-          tersebut sesuai dengan hasil pemodelan.
+          Tinjauan titik keempat yang berlokasi di D.I. Lomaya tepatnya pada koordinat 0&deg;36&prime;19.5&Prime;N 123&deg;04&prime;19.9&Prime;E. Berdasarkan hasil pemodelan, piksel pada area tersebut tergolong sudah optimal. Survei lapangan menunjukkan bahwa kategori evaluasi infrastruktur irigasi di wilayah tersebut sesuai dengan hasil pemodelan.
         </p>
         {/* Add the image */}
         <img
@@ -441,18 +417,7 @@ const FeaturesComponent = ({ map }: FeaturesComponentProps) => {
       >
         <p className="story-section-title">Titik Terakhir - Ekstensifikasi</p>
         <p className="story-description">
-          Tinjauan titik terakhir sebagai validasi model dalam isu
-          ekstensifikasi irigasi berlokasi di luar area D.I. Lomaya yakni di
-          titik 0°32'20.3"N 123°07'00.4"E. Berdasarkan hasil pemodelan, piksel
-          pada area tersebut menunjukkan kawasan yang memiliki rekomendasi yang
-          prioritas untuk dilakukan ekstensifikasi. Survei lapangan menunjukkan
-          kawasan tersebut merupakan area perkebunan yang memiliki akses saluran
-          air yang cukup dan tanah yang subur sehingga menunjukkan bahwa
-          kategori ekstensifikasi di wilayah tersebut sesuai dengan hasil
-          pemodelan. Akan tetapi, perlu dikaji lebih lanjut ketika akan membahas
-          ekstensifikasi atau penambahan area petak sawah baru karena perlu
-          dipertimbangkan faktor lain seperti izin pembebasan lahan, jumlah SDM
-          seperti petani, saluran air sekunder, dan pupuk.
+          Tinjauan titik terakhir sebagai validasi model dalam isu ekstensifikasi irigasi berlokasi di luar area D.I. Lomaya yakni di titik 0&deg;32&prime;20.3&Prime;N 123&deg;07&prime;00.4&Prime;E. Berdasarkan hasil pemodelan, piksel pada area tersebut menunjukkan kawasan yang memiliki rekomendasi yang prioritas untuk dilakukan ekstensifikasi. Survei lapangan menunjukkan kawasan tersebut merupakan area perkebunan yang memiliki akses saluran air yang cukup dan tanah yang subur sehingga menunjukkan bahwa kategori ekstensifikasi di wilayah tersebut sesuai dengan hasil pemodelan. Akan tetapi, perlu dikaji lebih lanjut ketika akan membahas ekstensifikasi atau penambahan area petak sawah baru karena perlu dipertimbangkan faktor lain seperti izin pembebasan lahan, jumlah SDM seperti petani, saluran air sekunder, dan pupuk.
         </p>
         {/* Add the image */}
         <img
