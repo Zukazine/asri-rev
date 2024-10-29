@@ -6,7 +6,6 @@ import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server"
 import { Toaster } from "@/components/ui/sonner";
 import { JotaiProvider } from "@/components/jotai-provider";
 import { SideBar } from "./_components/sidebar";
-import { usePathname } from "next/navigation";
 
 const inter = Inter({subsets: ['latin']})
 

@@ -1,5 +1,4 @@
 import { LucideIcon } from "lucide-react";
-import { Id } from "../../../../convex/_generated/dataModel";
 import { IconType } from "react-icons/lib";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -24,7 +23,7 @@ const SidebarItemVariants = cva(
 
 interface SidebarItemProps {
   label: string;
-  id: string;
+  // id: string;
   icon: LucideIcon | IconType
   variant?: VariantProps<typeof SidebarItemVariants>["variant"],
   type? : 'Explanatory' | 'Story' | 'Document'
@@ -32,7 +31,7 @@ interface SidebarItemProps {
 
 export const SidebarItem = ({
   label,
-  id,
+  // id,
   icon: Icon,
   variant,
   type

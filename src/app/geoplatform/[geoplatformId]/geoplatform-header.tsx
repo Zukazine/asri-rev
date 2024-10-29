@@ -8,12 +8,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Hint } from "@/components/hint"
 import { Doc } from "../../../../convex/_generated/dataModel"
-import { ChevronDownIcon, ListFilter, SquarePen } from "lucide-react"
+import { ChevronDownIcon, ListFilter } from "lucide-react"
 import { HiChevronDoubleLeft } from "react-icons/hi" 
-// import { PreferencesModal } from "./preferences-modal"
-import { useState } from "react"
 import { useMinimizeSidebar } from "@/features/geoplatforms/store/use-minimize-sidebar"
-// import { InviteModal } from "./invite-modal"
 
 interface GeoplatformHeaderProps {
   geoplatform: Doc<"geoplatforms">
@@ -21,8 +18,6 @@ interface GeoplatformHeaderProps {
 }
 
 export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderProps) => {
-  const [preferencesOpen, setPreferencesOpen] = useState(false)
-  const [inviteOpen, setInviteOpen] = useState(false)
   const [_minimize, setMinimize] = useMinimizeSidebar()
 
   return (
@@ -54,14 +49,14 @@ export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderPro
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="cursor-pointer py-2"
-                  onClick={() => {setInviteOpen(true)}}
+                  onClick={() => {}}
                 >
                   Invite people to {geoplatform.name}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="cursor-pointer py-2"
-                  onClick={() => {setPreferencesOpen(true)}}
+                  onClick={() => {}}
                 >
                   Preferences
                 </DropdownMenuItem>

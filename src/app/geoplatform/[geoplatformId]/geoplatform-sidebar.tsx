@@ -2,7 +2,7 @@
 
 import { useGetGeoplatform } from "@/features/geoplatforms/api/use-get-geoplatform"
 import { useGeoplatformId } from "@/hooks/use-geoplatform-id"
-import { AlertTriangle, HashIcon, Loader, MessageSquareText, SendHorizonal } from "lucide-react"
+import { AlertTriangle, Loader, MessageSquareText, SendHorizonal } from "lucide-react"
 import { GeoplatformSection } from "./geoplatform-section"
 import { SidebarItem } from "./sidebar-item"
 import { GeoplatformHeader } from "./geoplatform-header"
@@ -67,12 +67,12 @@ export const GeoplatformSidebar = () => {
         <SidebarItem 
           label="Threads"
           icon={MessageSquareText}
-          id="threads"
+          // id="threads"
         />
         <SidebarItem 
           label="Drafts & Sent"
           icon={SendHorizonal}
-          id="drafts"
+          // id="drafts"
         />
       </div>
       <GeoplatformSection
@@ -92,14 +92,14 @@ export const GeoplatformSidebar = () => {
         <SidebarItem
           icon={RiBook3Line}
           label={"Explanatory"}
-          id={'123123'}
+          // id={'123123'}
           variant={pathname.includes("/explanatory") ? "active" : "default"}
           type="Explanatory"
         />
         <SidebarItem
           icon={BiRocket}
           label={"Story : Validasi Model"}
-          id={'123123'}
+          // id={'123123'}
           type='Story'
           variant={pathname.includes("/story") ? "active" : "default"}
         />
