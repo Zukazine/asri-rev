@@ -1,21 +1,15 @@
-import { Hint } from "@/components/hint"
 import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
 import { FaCaretDown } from "react-icons/fa"
 import { useToggle } from "react-use"
 import { cn } from "@/lib/utils"
 interface GeoplatformSectionProps {
   children: React.ReactNode
   label: string
-  hint: string
-  onNew?: () => void
 }
 
 export const OverlaySection = ({
   children,
-  label,
-  hint,
-  onNew
+  label
 }: GeoplatformSectionProps) => {
   const [on, toggle] = useToggle(true)
   

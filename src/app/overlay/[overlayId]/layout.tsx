@@ -7,9 +7,6 @@ import {
 } from "@/components/ui/resizable"
 
 import { OverlaySidebar } from "./overlay-sidebar"
-import { useMinimizeSidebar } from "@/features/geoplatforms/store/use-minimize-sidebar"
-import { Button } from "@/components/ui/button"
-import { HiChevronDoubleLeft } from "react-icons/hi"
 
 interface GeoplatformLayoutProps {
   children: React.ReactNode
@@ -18,8 +15,6 @@ interface GeoplatformLayoutProps {
 const GeoplatformLayout = ({
   children
 }: GeoplatformLayoutProps) => {
-  const [minimize, setMinimize] = useMinimizeSidebar()
-  
   return(
     <div className="h-full overflow-hidden">
       <ResizablePanelGroup

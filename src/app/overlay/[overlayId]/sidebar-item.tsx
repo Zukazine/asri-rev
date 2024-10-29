@@ -1,4 +1,5 @@
 'use client'
+
 import { Button } from "@/components/ui/button";
 import { MdOutlineLayers } from 'react-icons/md'
 import { useState } from "react";
@@ -33,11 +34,11 @@ export const SidebarItem = ({
         >
         <>
           <FaRegEye 
-            onClick={() =>  {setShow(!show), setEye(false)}}
+            onClick={() =>  {setShow(!show); setEye(false);}}
             className={!eye ? "hidden" : ""}
           />
           <FaRegEyeSlash 
-            onClick={() => {setEye(true), setShow(!show)}}
+            onClick={() => {setEye(true); setShow(!show);}}
             className={!eye ? "" : "hidden"}
           />
         </>

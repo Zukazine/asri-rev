@@ -18,7 +18,7 @@ interface GeoplatformHeaderProps {
 }
 
 export const GeoplatformHeader = ({ geoplatform, isAdmin }: GeoplatformHeaderProps) => {
-  const [_minimize, setMinimize] = useMinimizeSidebar()
+  const [, setMinimize] = useMinimizeSidebar()
 
   return (
     <>

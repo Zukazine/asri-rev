@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useShowLayer } from "@/features/overlay/store/useShowLayer";
 
@@ -11,7 +12,7 @@ export const OverlayMap = () => {
   const mapRef = useRef<mapboxgl.Map | null>(null);
 
   console.log("Mapbox Token:", MAPBOX_TOKEN);
-  const [show, _setShow] = useShowLayer();
+  const [show, ] = useShowLayer();
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -21,7 +22,6 @@ export const OverlayMap = () => {
       return;
     }
 
-    const mapboxgl = (window as any).mapboxgl;
     mapboxgl.accessToken = MAPBOX_TOKEN;
 
     mapRef.current = new mapboxgl.Map({

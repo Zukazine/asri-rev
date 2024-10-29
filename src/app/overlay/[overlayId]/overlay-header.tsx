@@ -7,20 +7,11 @@ import {
   DropdownMenuSeparator 
 } from "@/components/ui/dropdown-menu"
 import { Hint } from "@/components/hint"
-import { Doc } from "../../../../convex/_generated/dataModel"
-import { ChevronDownIcon, ListFilter, SquarePen } from "lucide-react"
+import { ChevronDownIcon, ListFilter } from "lucide-react"
 import { HiChevronDoubleLeft } from "react-icons/hi" 
-// import { PreferencesModal } from "./preferences-modal"
-import { useState } from "react"
-import { useMinimizeSidebar } from "@/features/geoplatforms/store/use-minimize-sidebar"
-// import { InviteModal } from "./invite-modal"
 
-// Janlup buat propsnya
 
 export const OverlayHeader = () => {
-  const [preferencesOpen, setPreferencesOpen] = useState(false)
-  const [inviteOpen, setInviteOpen] = useState(false)
-
   return (
     <>
       <div className="flex items-center justify-between px-4 h-[49px] gap-0.5 z-10">
@@ -47,14 +38,14 @@ export const OverlayHeader = () => {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer py-2"
-                onClick={() => {setInviteOpen(true)}}
+                onClick={() => {}}
               >
                 Invite people to Overlay
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer py-2"
-                onClick={() => {setPreferencesOpen(true)}}
+                onClick={() => {}}
               >
                 Preferences
               </DropdownMenuItem>

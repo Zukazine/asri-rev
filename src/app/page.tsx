@@ -2,16 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useRouter } from "next/navigation";
-import { Construction, Rocket } from "lucide-react";
+import { Construction } from "lucide-react";
 import { useGetGeoplatforms } from "@/features/geoplatforms/api/use-get-geoplatforms";
 import { useCreateGeoplatform } from "@/features/geoplatforms/api/use-create-geoplatform";
 
 export default function Home() {
   const router = useRouter()
-  const [map, setMap] = useState<any>(null);
   const { signOut } = useAuthActions()
 
   const { mutate: createGeoplatform } = useCreateGeoplatform()
