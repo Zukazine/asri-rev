@@ -20,8 +20,6 @@ export const OverlaySidebar = () => {
       
       <OverlaySection
         label="Jatim Overlay"
-        hint="New channel"
-        onNew={() => {}}
       >
         <SidebarItem
           label={"SMI"}
