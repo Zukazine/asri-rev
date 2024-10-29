@@ -4,7 +4,7 @@ import { useEeModal } from "@/features/geoplatforms/store/use-ee-modal"
 import { useState } from "react"
 
 export const EeModal = () => {
-  const [open, setOpen] = useEeModal()
+  const [, setOpen] = useEeModal()
   const [max, setMax] = useState<boolean>(false)
 
   return (
