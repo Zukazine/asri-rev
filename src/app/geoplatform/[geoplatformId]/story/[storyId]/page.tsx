@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Map } from "mapbox-gl";
 
 const StoryByIdPage = () => {
-  const [map, setMap] = useState()
+  const [map, setMap] = useState<Map | undefined>()
 
   return ( 
   <div className="size-full relative rounded-xl overflow-hidden ml-1.5">
