@@ -9,8 +9,8 @@ interface MapComponentProps {
 
 const MapComponent = ({ onMapInit }: MapComponentProps) => {
   useEffect(() => {
-    const mapboxgl = (window as any).mapboxgl;
-    const Mapbox_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+    const mapboxgl = (window as any).mapboxgl
+    const Mapbox_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 
     mapboxgl.accessToken = Mapbox_TOKEN;
 
