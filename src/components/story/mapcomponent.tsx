@@ -2,17 +2,22 @@
 
 import { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
+import mapboxgl, { Map } from "mapbox-gl";
 
 interface MapComponentProps {
-  onMapInit: (map: any) => void;
+  onMapInit: (map: Map) => void;
 }
 
 const MapComponent = ({ onMapInit }: MapComponentProps) => {
   useEffect(() => {
-    const mapboxgl = (window as any).mapboxgl
-    const Mapbox_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
-
-    mapboxgl.accessToken = Mapbox_TOKEN;
+    const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+    
+    if (!mapboxToken) {
+      console.error("Mapbox access token is not defined");
+      return;
+    }
+    
+    mapboxgl.accessToken = mapboxToken;
 
     const map = new mapboxgl.Map({
       container: "map",

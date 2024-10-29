@@ -8,11 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc"
-import React, { ButtonHTMLAttributes, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { TriangleAlert } from "lucide-react";
-import { useCreateGeoplatform } from "@/features/geoplatforms/api/use-create-geoplatform";
-import { toast } from "sonner";
-import { useGetGeoplatforms } from "@/features/geoplatforms/api/use-get-geoplatforms";
 
 interface SignInProps {
   setState: (state: SignInFlow) => void
