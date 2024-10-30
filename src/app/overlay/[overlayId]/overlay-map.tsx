@@ -4,10 +4,15 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useShowLayer } from "@/features/overlay/store/useShowLayer";
+import { useLayers } from "@/features/overlay/store/use-layers";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 export const OverlayMap = () => {
+  const [smi, ] = useLayers(1)
+  const [wbi, ] = useLayers(2)
+  const [vci, ] = useLayers(3)
+
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
 
