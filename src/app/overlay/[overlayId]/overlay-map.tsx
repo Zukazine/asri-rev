@@ -9,23 +9,29 @@ import { useLayers } from "@/features/overlay/store/use-layers";
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 export const OverlayMap = () => {
-  const [smi, ] = useLayers(1)
-  const [wbi, ] = useLayers(2)
-  const [vci, ] = useLayers(3)
+  const [smi, ] = useLayers(0)
+  const [wbi, ] = useLayers(1)
+  const [vci, ] = useLayers(2)
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
-
-  console.log("Mapbox Token:", MAPBOX_TOKEN);
   const [show, ] = useShowLayer();
 
-  useEffect(() => {
-    if (!mapContainerRef.current) return;
+  const getImageUrl = () => {
+    if (smi && wbi && vci) return "/raster/all.png";
+    if (smi && wbi) return "/raster/wbi-smi.png";
+    if (smi && vci) return "/raster/smi-vci.png";
+    if (wbi && vci) return "/raster/wbi-vci.png";
+    if (smi) return "/raster/smi-jatim.png";
+    if (wbi) return "/raster/wbi-jatim.png";
+    if (vci) return "/raster/vci-jatim.png";
+    return "";
+  };
 
-    if (!MAPBOX_TOKEN) {
-      console.error("Mapbox token is missing");
-      return;
-    }
+  console.log(getImageUrl())
+
+  useEffect(() => {
+    if (!mapContainerRef.current || !MAPBOX_TOKEN) return;
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
 
@@ -39,13 +45,12 @@ export const OverlayMap = () => {
     mapRef.current?.on("style.load", () => {
       mapRef.current?.addSource("radar", {
         type: "image",
-        url: show ? "/raster/wbi-vci.png" : "",
+        url: getImageUrl(),
         coordinates: [
-          // JATIM
-          [110.8818, -6.7514], // Top Left (flipped to Bottom Left)
-          [114.4548, -6.7514], // Top Right (flipped to Bottom Right)
-          [114.4548, -8.6345], // Bottom Right (flipped to Top Right)
-          [110.8818, -8.6345], // Bottom Left (flipped to Top Left)
+          [110.8818, -6.7514],
+          [114.4548, -6.7514],
+          [114.4548, -8.6345],
+          [110.8818, -8.6345],
         ],
       });
       mapRef.current?.addLayer({
@@ -66,18 +71,40 @@ export const OverlayMap = () => {
   }, []);
 
   useEffect(() => {
-    if (mapRef.current) {
-      const layerId = "radar-layer";
+    const map = mapRef.current;
+    const layerId = "radar-layer";
 
-      if (mapRef.current.getLayer(layerId)) {
-        if (show) {
-          mapRef.current.setLayoutProperty(layerId, "visibility", "visible");
-        } else {
-          mapRef.current.setLayoutProperty(layerId, "visibility", "none");
-        }
+    if (map && map.isStyleLoaded()) {
+      const source = map.getSource("radar");
+
+      if (source) {
+        map.removeLayer(layerId);
+        map.removeSource("radar");
       }
+
+      map.addSource("radar", {
+        type: "image",
+        url: getImageUrl(),
+        coordinates: [
+          [110.8818, -6.7514],
+          [114.4548, -6.7514],
+          [114.4548, -8.6345],
+          [110.8818, -8.6345],
+        ],
+      });
+
+      map.addLayer({
+        id: layerId,
+        type: "raster",
+        source: "radar",
+        paint: {
+          "raster-fade-duration": 0,
+        },
+      });
+
+      map.setLayoutProperty(layerId, "visibility", show ? "visible" : "none");
     }
-  }, [show]);
+  }, [smi, wbi, vci, show]);
 
   return (
     <div

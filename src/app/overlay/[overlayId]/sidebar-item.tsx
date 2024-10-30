@@ -8,15 +8,15 @@ import { useShowLayer } from "@/features/overlay/store/useShowLayer"
 
 interface SidebarItemProps {
   label: string;
+  handleShow: () => void;
 }
 
 export const SidebarItem = ({
   label,
+  handleShow,
 }: SidebarItemProps) => {
   const [eye, setEye] = useState<boolean>(true)
   const [show, setShow] = useShowLayer()
-
-  console.log(show)
 
   return (
     <Button 
@@ -25,24 +25,17 @@ export const SidebarItem = ({
       asChild 
       className= 'flex items-center justify-start font-normal h-7 px-[18px] py-4 text-sm overflow-hidden cursor-pointer text-[#f9edffcc]'
     >
-      <div className="flex justify-between">
-        <div className="flex items-center justify-center gap-1.5">
+      <div className="flex items-center justify-start">
           <MdOutlineLayers className="size-3.5 mr-1 shrink-0"/>
-          <span className="text-sm truncate">{label}</span>  
-        </div>
-        <div
-        >
-        <>
-          <FaRegEye 
-            onClick={() =>  {setShow(!show); setEye(false);}}
-            className={!eye ? "hidden" : ""}
-          />
-          <FaRegEyeSlash 
-            onClick={() => {setEye(true); setShow(!show);}}
-            className={!eye ? "" : "hidden"}
-          />
-        </>
-        </div>
+          <span className="text-sm truncate">{label}</span>
+        <FaRegEye 
+          onClick={() =>  {setEye(false); handleShow()}}
+          className={!eye ? "hidden" : "shrink-0 ml-auto"}
+        />
+        <FaRegEyeSlash 
+          onClick={() => {setEye(true); handleShow()}}
+          className={!eye ? "shrink-0 ml-auto" : "hidden"}
+        />
       </div>
     </Button>
   )

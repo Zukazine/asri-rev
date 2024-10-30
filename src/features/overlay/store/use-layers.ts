@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai';
 
 const atomCount = 3;
-const atoms = Array.from({ length: atomCount }, () => atom(false));
+const atoms = Array.from({ length: atomCount }, () => atom(true));
 
 export const [atom1, atom2, atom3] = atoms;
 
