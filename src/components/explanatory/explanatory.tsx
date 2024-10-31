@@ -12,7 +12,7 @@ export const Explanatory = () => {
         image={"/image/irigasi-1.jpg"} 
         description={
           "Penelitian saya menggunakan Google Earth Engine (GEE) bertujuan memetakan wilayah prioritas irigasi dengan menganalisis data geospasial untuk mendukung pengelolaan sumber daya air secara berkelanjutan."
-        } 
+        }  
       />
       <Layers />
       <Descriptive 
