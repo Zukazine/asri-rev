@@ -30,11 +30,11 @@ export const OverlaySidebar = () => {
         />
         <SidebarItem 
           label={"Kondisi Kesehatan Vegetasi"}
-          handleShow={() => {setSmi(!smi)}} 
+          handleShow={() => {setVci(!vci)}} 
         />
         <SidebarItem 
           label={"Kelembaban Tanah"} 
-          handleShow={() => {setVci(!vci)}}
+          handleShow={() => {setSmi(!smi)}}
         />
       </OverlaySection>
       <Glasses className="z-1" />

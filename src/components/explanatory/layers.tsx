@@ -30,7 +30,7 @@ export const Layers = () => {
               tinggi. Sementara itu, data evapotranspirasi diperoleh dari produk
               MODIS dengan resolusi 1 km. Evapotranspirasi (ET) mencakup
               penguapan air dari tanaman, permukaan tanah, dan air tanah, yang
-              mencerminkan pertukaran energi dan massa antara tanah dan
+              menggambarkan pertukaran energi dan massa antara tanah dan
               atmosfer. Dengan memadukan kedua variabel ini, estimasi neraca air
               dapat dihitung secara lebih akurat, memberikan gambaran yang lebih
               komprehensif terkait kondisi ketersediaan air di suatu wilayah.
