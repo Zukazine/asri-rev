@@ -69,15 +69,22 @@ export const Layers = () => {
               Parameter 3: Indeks Kesehatan Vegetasi
             </p>
             <img
-              src="/explanatory/layer-3.jpeg"
+              src="/explanatory/layer-3.png"
               className="w-[420px] rounded-3xl"
             />
             <p className="text-[15px] w-[90%] text-gray-600">
-              SMI digunakan untuk mengukur kelembapan tanah, yang sangat penting
-              untuk pertumbuhan tanaman dan kesehatan tanah. Indeks ini
-              memberikan wawasan tentang kemampuan tanah dalam menahan air, yang
-              berpengaruh terhadap irigasi dan ketahanan tanaman terhadap
-              kekeringan.
+              Parameter ketiga, yaitu kondisi kesehatan vegetasi, ditentukan
+              menggunakan data indeks vegetasi dari produk MODIS yang membantu
+              dalam menghitung Vegetation Condition Index (VCI). VCI berfungsi
+              sebagai indikator pemantauan kekeringan dengan membandingkan nilai
+              indeks vegetasi normalisasi (NDVI) saat ini dengan nilai minimum
+              dan maksimum NDVI dari tahun sebelumnya di area tertentu.
+              Perbandingan ini memungkinkan identifikasi dini pada kondisi
+              kekeringan, di mana nilai VCI yang lebih rendah menunjukkan bahwa
+              vegetasi mungkin mengalami stres akibat kekeringan. Dengan
+              demikian, VCI memberikan gambaran dinamis tentang kesehatan
+              vegetasi yang relevan dengan kondisi air di suatu wilayah, menjadi
+              komponen penting dalam analisis kebutuhan air.
             </p>
           </div>
         </div>
