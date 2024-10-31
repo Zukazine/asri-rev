@@ -16,7 +16,7 @@ export const Layers = () => {
         <div className="grid grid-rows-3 ">
           <div className="text-white min-h-screen flex flex-col justify-center gap-6">
             <p className="text-4xl font-bold font-gilroy text-gray-600">
-              # Layer 1
+              Paramater 1: Indeks Neraca Air
             </p>
             <img src="/explanatory/layer-1.png" className="w-[500px]" />
             <p className="text-[15px] w-[90%] text-gray-600">
@@ -38,23 +38,35 @@ export const Layers = () => {
           </div>
           <div className="text-white min-h-screen flex flex-col justify-center gap-6">
             <p className="text-4xl font-bold font-gilroy text-gray-600">
-              # Layer 2
+              Paramater 2: Indeks Kebutuhan Air
             </p>
-            <img
-              src="/explanatory/layer-2.jpeg"
-              className="w-[420px] rounded-3xl"
-            />
+            <img src="/explanatory/layer-2.png" className="w-[500px]" />
             <p className="text-[15px] w-[90%] text-gray-600">
-              WBI memberikan informasi mengenai keseimbangan air di suatu
-              kawasan. Indeks ini mengukur interaksi antara input air (seperti
-              curah hujan) dan output (seperti evaporasi dan aliran permukaan).
-              Analisis WBI sangat penting untuk pengelolaan sumber daya air dan
-              pertanian.
+              Parameter indeks kebutuhan air (Water Demand Index) ditentukan
+              menggunakan beberapa variabel utama: kelembaban tanah, indeks
+              vegetasi, dan Growing Degree Days (GDD). Data kelembaban tanah
+              diperoleh dari produk NASA, Soil Moisture Active Passive (SMAP),
+              yang memanfaatkan radiasi gelombang mikro yang dipancarkan tanah
+              pada panjang gelombang mikro L-band (frekuensi 1-2 GHz). Tingkat
+              radiasi ini dipengaruhi oleh jumlah air dalam tanah; semakin
+              kering tanah, semakin banyak energi gelombang mikro yang
+              dipancarkan, sehingga SMAP dapat mengukur kelembaban tanah secara
+              efektif. Indeks vegetasi diperoleh dari pengolahan data satelit,
+              yaitu Landsat-8 dengan resolusi 30 meter melalui kanal merah (4)
+              dan kanal NIR (5), serta MODIS dengan resolusi 250 meter. Data ini
+              mencerminkan tingkat kesehatan dan kepadatan vegetasi yang
+              berhubungan langsung dengan kebutuhan air. Sementara itu, Growing
+              Degree Days (GDD) digunakan untuk memperkirakan kebutuhan air
+              berdasarkan suhu yang terakumulasi selama masa pertumbuhan
+              tanaman. GDD dihitung dengan rata-rata suhu harian, yakni
+              menjumlahkan suhu minimum dan maksimum lalu membaginya dengan dua.
+              Ketiga data ini menjadi dasar dalam membangun indeks kebutuhan
+              air, yang penting untuk memahami permintaan air di area pertanian.
             </p>
           </div>
           <div className="text-white min-h-screen flex flex-col justify-center gap-6">
             <p className="text-4xl font-bold font-gilroy text-gray-600">
-              # Layer 3
+              Parameter 3: Indeks Kesehatan Vegetasi
             </p>
             <img
               src="/explanatory/layer-3.jpeg"
