@@ -32,7 +32,7 @@ export const Descriptive = ({
             /> 
           </>
         }
-        <p className='text-[15px] w-[90%]'>{description}</p>
+        <p className='text-[15px] w-[90%] text-gray-600'>{description}</p>
       </div>
     </div>
   )
