@@ -112,7 +112,7 @@ export const OverlayMap = () => {
     }
   }, [smi, wbi, vci, show]);
 
-  const handleStyleChange = (event: any) => {
+  const handleStyleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedStyle(event.target.value);
   };
 
@@ -180,6 +180,12 @@ export const OverlayMap = () => {
         id="map"
         ref={mapContainerRef}
         style={{ height: "100%", width: "100%" }}
+      />
+
+      <img
+        src="/image/legenda.png"
+        alt="Legend"
+        className="absolute bottom-10 left-4 z-1 w-[100px] bg-black/50 rounded-xl p-5 backdrop-blur-sm"
       />
     </div>
   );

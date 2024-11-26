@@ -1,12 +1,10 @@
 import React from "react";
-import { OverlayIllustration } from "./overlay-illustration";
 
 export const Layers = () => {
   return (
     <div className="grid grid-cols-2 h-[300vh] relative">
       <div className="sticky top-0 left-0 w-full h-screen ">
         <div className="h-full flex items-center justify-center">
-          {/* <OverlayIllustration /> */}
           <div className="size-48">
             <img src="/image/overlay.png" />
           </div>

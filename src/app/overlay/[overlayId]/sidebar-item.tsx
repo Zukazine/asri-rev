@@ -16,7 +16,6 @@ export const SidebarItem = ({
   handleShow,
 }: SidebarItemProps) => {
   const [eye, setEye] = useState<boolean>(true)
-  const [show, setShow] = useShowLayer()
 
   return (
     <Button 
