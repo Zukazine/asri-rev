@@ -1,16 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
-import { Button } from "@/components/ui/button";
-import { useAuthActions } from "@convex-dev/auth/react";
+import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Construction } from "lucide-react";
 import { useGetGeoplatforms } from "@/features/geoplatforms/api/use-get-geoplatforms";
 import { useCreateGeoplatform } from "@/features/geoplatforms/api/use-create-geoplatform";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter()
-  const { signOut } = useAuthActions()
 
   const { mutate: createGeoplatform } = useCreateGeoplatform()
   const { data: geoplatforms, isLoading: isGeoplatformsLoading } = useGetGeoplatforms()
@@ -18,45 +15,30 @@ export default function Home() {
   const geoplatformId = useMemo(() => geoplatforms?.[0]?._id, [geoplatforms])
   const isGeoExist = useMemo(() => geoplatforms?.length !== 0, [geoplatforms])
 
-  const handleToGeoplatform = () => {
-    if (isGeoplatformsLoading) return
+  useEffect(() => {
+    if (isGeoplatformsLoading) return;
 
     if (!isGeoExist) {
       createGeoplatform({
         name: "default"
       }, { onSuccess(id) {
-        router.push(`geoplatform/${id}`)
+        router.replace(`geoplatform/${id}/explanatory/1`)
       },})
     } else {
       router.replace(`/geoplatform/${geoplatformId}/explanatory/1`)
     }
-  }
-
-  const handleSignOut = async () => {
-    await signOut().finally(() => {
-      router.push('/auth')
-    })
-  }
+  }, [geoplatformId, isGeoplatformsLoading])
 
   return (
-    <div className="flex flex-col h-full w-full items-center justify-center gap-y-6">
-      <p className="text-3xl font-bold text-center">UNDER DEVELOPMENT <br/>BY <span className="text-teal-500">DA BOYS</span></p>
-      <img
-        src="/image/success.gif"
-        className="size-[320px]"
-      />
-      <div className="flex gap-x-4">
-          <Button 
-            variant={"ghost"} 
-            size={"default"} 
-            className="border-2 border-teal-400"
-            onClick={handleToGeoplatform}
-          >
-            To Construction Site <Construction className="size-4 ml-2"/>
-          </Button>
-        <Button variant={"destructive"} size={"default"} onClick={handleSignOut}>
-          Log out
-        </Button>
+    <div className="h-screen grid place-items-center pb-12">
+      <div className="flex flex-col items-center justify-center gap-2">
+        <Image 
+          src={'/image/loading.gif'}
+          width={150}
+          height={150} 
+          alt={"Loading icon"}
+          />
+        <p className="font-gilroy font-semibold font-lg">LOADING ..</p>
       </div>
     </div>
   ); 

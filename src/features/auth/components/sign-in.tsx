@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc"
 import React, { useState } from "react";
 import { TriangleAlert } from "lucide-react";
+import Image from "next/image";
 
 interface SignInProps {
   setState: (state: SignInFlow) => void
