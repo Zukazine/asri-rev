@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { MdOutlineLayers } from 'react-icons/md'
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
-import { useShowLayer } from "@/features/overlay/store/useShowLayer"
 
 interface SidebarItemProps {
   label: string;
